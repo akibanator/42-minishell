@@ -4,7 +4,10 @@ HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= minishell.h
-SOURCES_LIST 	= main.c \
+SOURCES_LIST 	= split.c \
+				test.c \
+				quote.c \
+				# main.c 
 				
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}

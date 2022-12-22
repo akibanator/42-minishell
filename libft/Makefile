@@ -1,6 +1,6 @@
 NAME			= libft.a
 
-HEADERS_DIR		= ./inc/
+HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= libft.h 
