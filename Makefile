@@ -20,7 +20,7 @@ OBJECTS			= ${addprefix ${OBJECTS_DIR}, ${OBJECTS_LIST}}
 
 LIBFT			= ${LIBFT_DIR}libft.a
 LIBFT_DIR		= ./libft/
-LIBFT_HEADERS	= ${LIBFT_DIR}inc/
+LIBFT_HEADERS	= ${LIBFT_DIR}includes/
 
 CC				= cc
 CFLAGS			= -Wall -Werror -Wextra
