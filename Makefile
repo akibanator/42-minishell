@@ -5,7 +5,8 @@ SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= minishell.h
 SOURCES_LIST 	= main.c \
-				
+				  ft_is_builtin.c
+
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -17,10 +18,10 @@ OBJECTS			= ${addprefix ${OBJECTS_DIR}, ${OBJECTS_LIST}}
 
 LIBFT			= ${LIBFT_DIR}libft.a
 LIBFT_DIR		= ./libft/
-LIBFT_HEADERS	= ${LIBFT_DIR}includes/
+LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra 
+CFLAGS			= -Wall -Werror -Wextra
 
 RM 				= rm -f
 
@@ -52,4 +53,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all, clean, fclean, re
+.PHONY:		all, clean, fclean, re, test
