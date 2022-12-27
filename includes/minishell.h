@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/21 23:45:14 by rarobert         ###   ########.fr       */
+/*   Updated: 2022/12/27 18:48:04 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 int		next_size(char *str);
 char	**mini_split(char const *s, char c);
+char	***rearrange_input(char **input);
 
 #endif
