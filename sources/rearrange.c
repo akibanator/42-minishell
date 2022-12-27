@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:08:37 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/27 18:42:46 by rarobert         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:04:00 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	counter(char **input)
 	{
 		if (!(ft_strncmp(*input, "|")))
 			i++;
-		if (ft_isredirect(*input))
+		if (ft_is_redirect(*input))
 		{
 			i++;
 			input += 2;
@@ -40,11 +40,11 @@ char	***rearrange_input(char **input)
 	arranged = (char ***)malloc(sizeof(char **) * (counter(input) + 1));
 	while (*input)
 	{
-		if (ft_isredirect(*input))
+		if (ft_is_redirect(*input))
 			arranged[i] = get_redirect(input);
 		else
 			arranged[i] = get_cmd(input);
-		while (!ft_isredirect(*input) && (ft_stncmp(*inrput, "|")))
+		while (!ft_is_redirect(*input) && (ft_stncmp(*inrput, "|")))
 			input++;
 		if (!(ft_strncmp(*input, "|")))
 			input++;
