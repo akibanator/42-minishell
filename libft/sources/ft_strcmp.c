@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/27 04:30:33 by akenji-a         ###   ########.fr       */
+/*   Created: 2022/12/27 03:43:39 by akenji-a          #+#    #+#             */
+/*   Updated: 2022/12/27 03:43:51 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	ft_cd("~/home");
-	return (0);
+	size_t i;
+
+	i = 0;
+	while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0'))
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
