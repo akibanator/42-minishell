@@ -6,7 +6,6 @@ SOURCES_DIR		= ./sources/
 HEADERS_LIST	= minishell.h
 SOURCES_LIST	= split.c \
 				test.c \
-				quote.c \
 				rearrange.c \
 				# main.c 
 				
