@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/29 23:03:30 by akenji-a         ###   ########.fr       */
+/*   Updated: 2022/12/30 04:26:09 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int		next_size(char *str);
 char	**mini_split(char const *s, char c);
 int		ft_is_builtin(char	**str);
 t_env	*init_env();
+void	free_env(t_env *env);
 
 #endif

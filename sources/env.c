@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2022/12/30 04:10:46 by akenji-a         ###   ########.fr       */
+/*   Updated: 2022/12/30 04:26:16 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ static void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+void	free_env(t_env *env)
+{
+	t_env	*temp;
+
+	while (ft_strncmp(env->name, "-EOF", 4) != 0)
+	{
+		temp = env->next;
+		free(env->name);
+		free(env->value);
+		free(env);
+		env = temp;
+	}
+	free(env->name);
+	free(env);
 }
 
 static t_env	*init_struct(char **str)
