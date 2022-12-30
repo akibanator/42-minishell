@@ -6,6 +6,7 @@ SOURCES_DIR		= ./sources/
 HEADERS_LIST	= minishell.h
 SOURCES_LIST	= split.c \
 				quote.c \
+				ft_cd.c \
 				ft_is_builtin.c \
 				env.c \
 				main.c
@@ -25,7 +26,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -g -Wall -Werror -Wextra
 
 RM 				= rm -f
 

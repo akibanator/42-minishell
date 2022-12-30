@@ -3,7 +3,7 @@ NAME			= libft.a
 HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./sources/
 
-HEADERS_LIST	= libft.h 
+HEADERS_LIST	= libft.h
 SOURCES_LIST	=	ft_atoi.c \
 				ft_calloc.c \
 				ft_bzero.c \
@@ -25,6 +25,7 @@ SOURCES_LIST	=	ft_atoi.c \
 				ft_strlcpy.c \
 				ft_strlen.c \
 				ft_strncmp.c \
+				ft_strcmp.c \
 				ft_strnstr.c \
 				ft_strrchr.c \
 				ft_strisdigit.c \
@@ -55,7 +56,7 @@ SOURCES_LIST	=	ft_atoi.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 				ft_printf_numbers.c \
-				ft_printf.c 
+				ft_printf.c
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
