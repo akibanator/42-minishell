@@ -6,11 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/30 04:26:36 by akenji-a         ###   ########.fr       */
-=======
-/*   Updated: 2022/12/28 21:29:25 by akenji-a         ###   ########.fr       */
->>>>>>> ft_cd
+/*   Updated: 2022/12/30 04:48:28 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +14,10 @@
 
 int	main(void)
 {
-<<<<<<< HEAD
 	t_env	*env;
 
 	env = init_env();
 	free_env(env);
-=======
 	ft_cd("~");
 	ft_cd("-");
 	ft_cd("..");
@@ -31,6 +25,5 @@ int	main(void)
 	ft_cd("..");
 	ft_cd("..");
 	ft_cd("/var/log/apt");
->>>>>>> ft_cd
 	return (0);
 }
