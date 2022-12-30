@@ -6,6 +6,7 @@ SOURCES_DIR		= ./sources/
 HEADERS_LIST	= minishell.h
 SOURCES_LIST	= split.c \
 				quote.c \
+				ft_env.c \
 				ft_cd.c \
 				ft_is_builtin.c \
 				env.c \
