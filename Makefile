@@ -8,6 +8,7 @@ SOURCES_LIST	= split.c \
 				quote.c \
 				ft_env.c \
 				ft_cd.c \
+				ft_unset.c \
 				ft_echo.c \
 				ft_is_builtin.c \
 				env.c \
