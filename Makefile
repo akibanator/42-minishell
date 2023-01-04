@@ -8,6 +8,7 @@ SOURCES_LIST	= split.c \
 				quote.c \
 				ft_env.c \
 				ft_cd.c \
+				ft_echo.c \
 				ft_is_builtin.c \
 				env.c \
 				main.c
@@ -27,7 +28,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -g -Wall -Werror -Wextra
+CFLAGS			= -g # -Wall -Werror -Wextra
 
 RM 				= rm -f
 

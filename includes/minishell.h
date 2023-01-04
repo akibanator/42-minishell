@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/30 04:54:43 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/04 07:08:43 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_env	*init_env();
 void	free_env(t_env *env);
 int		ft_cd(char *str);
 void	ft_env(t_env *env);
+void	ft_echo(char **str);
 
 #endif
