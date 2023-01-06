@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   t_is_redirect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/30 22:14:49 by rarobert         ###   ########.fr       */
+/*   Created: 2022/12/27 19:00:02 by rarobert          #+#    #+#             */
+/*   Updated: 2022/12/30 03:52:17 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "../libft/includes/libft.h"
-
-typedef struct s_nelson {
-	int				pipe[2];
-	int				is_done;
-	int				is_dq;
-	char			**cmd;
-	struct t_nelson	*next;
-}					t_nelson;
-
-void	check_quotes(char *s);
-int		ft_is_redirect(char *str);
-char	**mini_split(char const *s, char c);
-
-#endif
+int	ft_is_redirect(char *str)
+{
+	if (!(ft_strncmp(str, "<", 1)))
+		return (1);
+	if (!(ft_strncmp(str, "<<", 2)))
+		return (1);
+	if (!(ft_strncmp(str, ">", 1)))
+		return (1);
+	if (!(ft_strncmp(str, ">>", 2)))
+		return (1);
+	if (!ft_strncmp(str, "|", 1))
+		return (1);
+	return (0);
+}

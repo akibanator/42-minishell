@@ -7,6 +7,7 @@ HEADERS_LIST	= minishell.h
 SOURCES_LIST	= split.c \
 				test.c \
 				rearrange.c \
+				ft_is_redirect.c \
 				# main.c 
 				
 
