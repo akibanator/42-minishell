@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/10 09:37:23 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/12 01:29:01 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ typedef struct s_nelson {
 	struct s_nelson	*next;
 }					t_nelson;
 
-void	check_quotes(char *s);
-int		ft_is_redirect(char *str);
-char	**mini_split(char const *s, char c);
+void		check_quotes(char *s);
+int			ft_is_redirect(char *str);
+char		**get_content(char *s);
+char		*edit_input(char *input, int i, int j);
+t_nelson	*read_input(char *cmdline);
+char		**mini_split(char const *s, char c);
 
 #endif

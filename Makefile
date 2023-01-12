@@ -6,7 +6,8 @@ SOURCES_DIR		= ./sources/
 HEADERS_LIST	= minishell.h
 SOURCES_LIST	= split.c \
 				test.c \
-				rearrange.c \
+				read.c \
+				read_utils.c \
 				ft_is_redirect.c \
 				# main.c 
 				
