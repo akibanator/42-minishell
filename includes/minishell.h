@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/12 02:48:17 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:28:47 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ int			ft_cd(char *str);
 void		ft_env(t_env *env);
 void		ft_echo(char **str);
 void		ft_unset(char *str, t_env *env);
-char		***rearrange_input(char **input);
 
 #endif

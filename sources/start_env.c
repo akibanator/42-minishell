@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   start_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2022/12/30 04:56:34 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:29:30 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 extern char	**environ;
 
-static void	free_split(char **split)
+static size_t	gen_strlen(char const *str, char delim)
 {
 	size_t	i;
 
 	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
+	while (str[i] != delim && str[i])
 		i++;
-	}
-	free(split);
+	return (i + 1);
 }
 
 void	free_env(t_env *env)
@@ -60,7 +57,8 @@ t_env	*init_env(void)
 	char	**str;
 	t_env	*head;
 	t_env	*current;
-	char	**split;
+	char	*value;
+	char	*pos_chr;
 
 	str = environ;
 	head = init_struct(str);
@@ -68,13 +66,10 @@ t_env	*init_env(void)
 	while (*str && head != NULL)
 	{
 		current->name_value = ft_strdup(*str);
-		split = ft_split(*str, '=');
-		current->name = ft_strdup(split[0]);
-		if (split[1] != NULL)
-			current->value = ft_strdup(split[1]);
-		else
-			current->value = ft_strdup("");
-		free_split(split);
+		pos_chr = ft_strchr(*str, '=');
+		current->value = ft_strdup(++pos_chr);
+		current->name = malloc(gen_strlen(*str, '=') * sizeof(char));
+		ft_strlcpy(current->name, *str, gen_strlen(*str, '='));
 		str++;
 		current->next = malloc(sizeof(t_env));
 		current = current->next;
