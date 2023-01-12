@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:26:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2022/12/28 21:38:10 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/12 02:47:22 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_pwd(void)
 {
 	char	current_dir[4096];
+
 	if (getcwd(current_dir, sizeof(current_dir)) == NULL)
 		perror("getcwd() error");
 	else
