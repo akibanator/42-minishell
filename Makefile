@@ -10,7 +10,7 @@ SOURCES_LIST	= split.c \
 				ft_unset.c \
 				ft_echo.c \
 				ft_is_builtin.c \
-				env.c \
+				start_env.c \
 				main.c
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
