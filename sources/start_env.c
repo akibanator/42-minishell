@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/12 05:29:30 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:25:22 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_env	*init_env(void)
 	char	**str;
 	t_env	*head;
 	t_env	*current;
-	char	*value;
 	char	*pos_chr;
 
 	str = environ;
