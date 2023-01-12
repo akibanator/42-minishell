@@ -1,0 +1,22 @@
+struct
+{
+	int pipe[2]; y
+	char **cmd/red; -> {"|", NULL} {<, file/delimiter} {cmd, parameter}
+	struct *next;
+	struct *prev;
+}
+
+
+< outfile grep a | cat >> outfile
+strcut1 -> cmd = { <, outfile, NULL}
+struct2 -> cmd = { grep, a, NULL}
+struct3 -> cmd = { |, NULL}
+struct4 -> cmd = { cat, NULL}
+struct5 -> cmd = { >>, outfile, NULL}
+
+
+
+if redir -> [0] = redir, [1] = next_str, [2] = NULL
+if pipe -> [0] = pipe, [1] = NULL
+if built_in -> [0] = builtin_name, [1]-[n] = next_strs until redir/pipe, [n + 1] = NULL
+else -> [0] = cmd_name, [1]-[n] = next_strs until redir/pipe, [n + 1] = NULL

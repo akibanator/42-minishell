@@ -11,6 +11,7 @@ SOURCES_LIST	= split.c \
 				ft_unset.c \
 				ft_echo.c \
 				ft_is_builtin.c \
+				rearrange.c \
 				env.c \
 				main.c
 				# test.c
