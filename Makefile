@@ -5,16 +5,13 @@ SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= minishell.h
 SOURCES_LIST	= split.c \
-				quote.c \
 				ft_env.c \
 				ft_cd.c \
 				ft_unset.c \
 				ft_echo.c \
 				ft_is_builtin.c \
-				env.c \
+				start_env.c \
 				main.c
-				# test.c
-
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -29,7 +26,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -g # -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra
 
 RM 				= rm -f
 
