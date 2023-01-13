@@ -1,0 +1,8 @@
+prep
+ask prompt -> start env -> expand $variables -> proccess input -> save std fds -> ?
+
+running
+cmd/builtin -> check fds until next pipe/end then run
+redirect -> if not done, do
+pipe -> redirect fds then go back for cmd
+
