@@ -17,8 +17,9 @@ SOURCES_LIST	= split.c \
 				read.c \
 				start_env.c \
 				check.c \
-				test.c \
-				# main.c
+				exp_var2.c \
+				main.c
+				#test.c \
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -33,7 +34,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -g # -Wall -Werror -Wextra
 
 RM 				= rm -f
 

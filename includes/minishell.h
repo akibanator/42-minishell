@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/12 15:21:41 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:12:37 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ typedef struct s_env {
 	char			*value;
 	struct s_env	*next;
 }	t_env;
+
+typedef struct s_exp_var {
+	char				*str;
+	struct s_exp_var	*next;
+}	t_exp_var;
 
 typedef struct s_nelson {
 	int				pipe[2];
@@ -43,5 +48,6 @@ int			ft_cd(char *str);
 void		ft_env(t_env *env);
 void		ft_echo(char **str);
 void		ft_unset(char *str, t_env *env);
+char		*exp_var(char *str, t_env *env);
 
 #endif
