@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/12 15:21:41 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/13 08:26:49 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 
 # include "../libft/includes/libft.h"
 # include <stdio.h>
+
+typedef struct s_hell {
+	int				std_in;
+	int				std_out;
+	int				fd_in;
+	int				fd_out;
+	int				exit_code;
+	char			**path;
+	struct s_env	*env;
+	struct s_nelson	*nelson;
+}	t_hell;
 
 typedef struct s_env {
 	char			*name_value;
@@ -30,6 +41,7 @@ typedef struct s_nelson {
 	struct s_nelson	*next;
 }	t_nelson;
 
+char		**get_path(char *envp[]);
 void		check_quotes(char *s);
 int			ft_is_redirect(char *str);
 char		**get_content(char *s);
