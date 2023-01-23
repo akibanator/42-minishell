@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:04:00 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/17 22:44:40 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:25:21 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static size_t	split_exp_var(size_t lst_i, size_t i, char *str, t_exp_var *ev)
 {
 	char	*new_str;
 
-
 	new_str = ft_strndup(&str[lst_i], i - lst_i);
 	ev->str = new_str;
 	ev->next = malloc(sizeof(t_exp_var));
@@ -47,27 +46,6 @@ static size_t	split_exp_var(size_t lst_i, size_t i, char *str, t_exp_var *ev)
 		exit(1);
 	lst_i = i;
 	return (lst_i);
-}
-
-static size_t	split_sing_qt(size_t lst_i, size_t i, char *str, t_exp_var *ev)
-{
-	size_t	len;
-	size_t	lst_i_temp;
-	char	*new_str;
-
-	len = 0;
-	lst_i_temp = lst_i;
-	while (str[lst_i + 1] != '\'' && str[lst_i] != '\0')
-	{
-		len++;
-		lst_i++;
-	}
-	new_str = ft_strndup(&str[lst_i_temp], len + 2);
-	ev->str = new_str;
-	ev->next = malloc(sizeof(t_exp_var));
-	if (ev->next == NULL)
-		exit(1);
-	return (lst_i + 2);
 }
 
 static char	*find_env(char *str, t_env *env)
@@ -112,50 +90,34 @@ static size_t	split_dol(size_t lst_i, size_t i, char *str, t_exp_var *ev, t_env 
 	return (lst_i + i);
 }
 
-void	test_print(t_exp_var *ev)
-{
-	t_exp_var	*current;
-
-	current = ev;
-	while (current != NULL)
-	{
-		ft_printf("%s\n", current->str);
-		current = current->next;
-	}
-}
-
 char	*exp_var(char *str, t_env *env)
 {
 	size_t		i;
 	size_t		last_i;
 	t_exp_var	*head;
 	t_exp_var	*current;
+	int			quote_state;
 
 	i = 0;
 	last_i = i;
 	head = init_struct(str);
 	current = head;
-	ft_printf("before: %s\n", str);
+	quote_state = 1;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\'' || str[i] == '$')
+		if (str[i] == '\'')
+			quote_state *= -1;
+		if (str[i + 1] == '\0' || str[i] == '$')
 		{
 			last_i = split_exp_var(last_i, i, str, current);
 			current = current->next;
-			if (str[i] == '\'')
-			{
-				last_i = split_sing_qt(last_i, i, str, current);
-				current = current->next;
-				i = last_i;
-			}
-			else if (str[i] == '$')
-			{
-				last_i = split_dol(last_i, i, str, current, env);
-				current = current->next;
-				i = last_i;
-			}
+		}
+		if (str[i] == '$' && quote_state == 1)
+		{
+			last_i = split_dol(last_i, i, str, current, env);
+			current = current->next;
+			i = last_i;
 		}
 		i++;
 	}
-	test_print(head);
 }
