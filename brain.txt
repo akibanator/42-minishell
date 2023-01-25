@@ -8,3 +8,7 @@ pipe -> redirect fds then go back for cmd
 
 <file1 [cmd1 param1] | cmd2 >file2
 <<limiter cmd1 | cmd2 >>file2
+
+
+pipe called by cmd -> is_done goes to 1 (using pipe[1])
+pipe called by pipe -> is_done goes to 2 (using pipe[0])

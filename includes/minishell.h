@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/13 08:26:49 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/25 02:46:19 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 typedef struct s_hell {
 	int				std_in;
 	int				std_out;
-	int				fd_in;
-	int				fd_out;
 	int				exit_code;
+	int				close;
 	char			**path;
 	struct s_env	*env;
 	struct s_nelson	*nelson;
