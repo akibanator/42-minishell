@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/25 02:46:19 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/29 20:30:02 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ typedef struct s_nelson {
 	struct s_nelson	*next;
 }	t_nelson;
 
+void		run_pipe(t_hell *hell, t_nelson *node);
+void		run_redirect(t_hell *hell, t_nelson *node);
+void		run_cmd(t_hell *hell, t_nelson *node);
+void		run_builtin(t_hell *hell, t_nelson *node);
+void		run_node(t_hell *hell, t_nelson *node);
+int			set_fds(t_hell *hell, t_nelson *node);
+t_hell		*setup_hell(char *envp[]);
 char		**get_path(char *envp[]);
 void		check_quotes(char *s);
 int			ft_is_redirect(char *str);
@@ -54,5 +61,6 @@ int			ft_cd(char *str);
 void		ft_env(t_env *env);
 void		ft_echo(char **str);
 void		ft_unset(char *str, t_env *env);
+void		ft_export(char *str, t_env *env);
 
 #endif

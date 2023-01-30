@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/12 01:30:26 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/29 20:45:35 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ char	*edit_input(char *input, int i, int j)
 	while (input[++j])
 	{
 		if ((input[j - 1] == '<' || input[j - 1] == '>') && input[j] == ' ')
-			j++;
+			st[++i] = input[j - 1];
 		st[++i] = input[j];
-		if ((st[i] == '|' || st[i] == '<' || st[i] == '>') && st[i - 1] != ' ')
+		if ((st[i] == '|' || st[i] == '<' || st[i] == '>') &&
+		(st[i - 1] != ' ') && st[i - 1] != st[i])
 		{
 			st[i + 1] = st[i];
 			st[i++] = ' ';
@@ -88,7 +89,9 @@ t_nelson	*read_input(char *cmdline)
 {
 	t_nelson	*input;
 	t_nelson	*start;
+	char		*aux;
 
+	aux = cmdline;
 	input = get_node(cmdline);
 	start = input;
 	if (*cmdline != '|')
@@ -106,5 +109,6 @@ t_nelson	*read_input(char *cmdline)
 		else
 			cmdline++;
 	}
+	free(aux);
 	return (start);
 }
