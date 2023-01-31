@@ -17,7 +17,7 @@ SOURCES_LIST	= split.c \
 				read.c \
 				start_env.c \
 				check.c \
-				exp_var2.c \
+				exp_var3.c \
 				main.c
 				#test.c \
 
