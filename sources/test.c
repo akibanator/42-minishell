@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/31 20:56:54 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:08:16 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	ft_free_array(char **array, void *aux)
 
 int	set_fds(t_hell *hell, t_nelson *node)
 {
-	while(node)
+	while (node)
 	{
 		if (node->content[0][0] == '|')
 		{
