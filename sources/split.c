@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/27 12:45:37 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:13:06 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ static char	**split_it(char **split, char const *s, char c, size_t words)
 		while (s[i] == c)
 			i++;
 		if (s[i] == '\'')
-			len = gen_strlen(&s[++i], '\'');
+			len = gen_strlen(&s[i + 1], '\'');
 		else if (s[i] == '\"')
-			len = gen_strlen(&s[++i], '\"');
+			len = gen_strlen(&s[i + 1], '\"');
 		else
 			len = gen_strlen(&s[i], c);
 		split[j] = (char *)malloc(sizeof(char) * len);
-		if (s[i - 1] == '\'' || s[i - 1] == '\"')
+		if (s[i] == '\'' || s[i] == '\"')
 			ft_strlcpy(split[j], &s[i], len);
 		else
 			ft_strlcpy(split[j], &s[i], len);
