@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/29 21:08:26 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/31 20:56:54 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 void	run_builtin(t_hell *hell, t_nelson *node)
 {
 	pid_t	child;
-	
+
 	child = fork();
 	if (child == 0)
 	{
@@ -213,9 +213,9 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc == 1)
 		ft_printf("running %s\n", argv[0]);
-	input_list = read_input(edit_input(argv[1], -1, -1));
+	input_list = read_input(edit_input(argv[1], 1, -1));
 	start = input_list;
-	input = edit_input(argv[1], -1, -1);
+	input = edit_input(argv[1], 1, -1);
 	ft_printf("noedit input = %s\n", argv[1]);
 	ft_printf("edited input = %s\n", input);
 	free(input);

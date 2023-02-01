@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/29 20:45:35 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:03:36 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ char	*edit_input(char *input, int i, int j)
 	while (input[++j])
 	{
 		if (input[j] != input[j - 1] && (input[j] == '<' || input[j] == '>'))
-			j++;
+			i++;
 		if (input[j] == '|')
-			j++;
+			i++;
 	}
-	st = (char *)malloc((j + 1) * sizeof(char));
+	st = (char *)ft_calloc((j + i), sizeof(char));
 	j = -1;
+	i = -1;
 	st[++i] = input[++j];
 	while (input[++j])
 	{
 		if ((input[j - 1] == '<' || input[j - 1] == '>') && input[j] == ' ')
 			st[++i] = input[j - 1];
 		st[++i] = input[j];
-		if ((st[i] == '|' || st[i] == '<' || st[i] == '>') &&
-		(st[i - 1] != ' ') && st[i - 1] != st[i])
+		if (ft_is_redirect(&st[i]) && (st[i - 1] != ' ') && st[i - 1] != st[i])
 		{
 			st[i + 1] = st[i];
 			st[i++] = ' ';
