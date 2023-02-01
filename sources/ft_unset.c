@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/04 08:44:28 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/01/31 22:09:43 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_unset(char *str, t_env *env)
+t_env	*ft_unset(char *str, t_env *env)
 {
 	size_t	len_str;
 	size_t	len_envname;
 	t_env	*prev;
 	t_env	*temp;
 
+	prev = NULL;
 	len_str = ft_strlen(str);
 	while (ft_strncmp(env->name, "-EOF", 4) != 0)
 	{
@@ -34,9 +35,18 @@ void	ft_unset(char *str, t_env *env)
 				free(env);
 				prev->next = temp;
 			}
-			break ;
+			else
+			{
+				temp = env;
+				env = env->next;
+				free(temp->name_value);
+				free(temp->name);
+				free(temp->value);
+				free(temp);
+			}
 		}
 		prev = env;
 		env = env->next;
 	}
+	return (env);
 }

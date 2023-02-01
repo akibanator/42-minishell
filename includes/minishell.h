@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/29 20:30:02 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/31 22:09:56 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ int			ft_is_builtin(char	**str);
 t_env		*init_env(void);
 void		free_env(t_env *env);
 int			ft_cd(char *str);
+void		ft_pwd(void);
 void		ft_env(t_env *env);
 void		ft_echo(char **str);
-void		ft_unset(char *str, t_env *env);
+t_env		*ft_unset(char *str, t_env *env);
 void		ft_export(char *str, t_env *env);
 
 #endif

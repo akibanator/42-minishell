@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/31 21:08:16 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/01/31 22:10:18 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,24 +116,18 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 
 void	run_builtin(t_hell *hell, t_nelson *node)
 {
-	pid_t	child;
-
-	child = fork();
-	if (child == 0)
-	{
-		if (!ft_strncmp(node->content[0], "echo", 4))
-			ft_echo(node->content);
-	// 	else if (!ft_strncmp(node->content[0], "pwd", 3))
-	// 		ft_pwd(node->content);
-	// 	else if (!ft_strncmp(node->content[0], "env", 3))
-	// 		ft_env(node->content);
-	}
-	// if (!ft_strncmp(node->content[0], "cd", 2))
-	// 	ft_cd(node->content[0]);
+	if (!ft_strncmp(node->content[0], "echo", 4))
+		ft_echo(node->content);
+	else if (!ft_strncmp(node->content[0], "pwd", 3))
+		ft_pwd();
+	else if (!ft_strncmp(node->content[0], "env", 3))
+		ft_env(hell->env);
+	if (!ft_strncmp(node->content[0], "cd", 2))
+		ft_cd(node->content[1]);
 	else if (!ft_strncmp(node->content[0], "export", 6))
 		ft_export(node->content[0], hell->env);
-	// else if (!ft_strncmp(node->content[0], "unset", 5))
-	// 	ft_unset(node->content[0], hell->env);
+	else if (!ft_strncmp(node->content[0], "unset", 5))
+		hell->env = ft_unset(node->content[1], hell->env);
 	// else if (!ft_strncmp(node->content[0], "exit", 4))
 	// 	ft_exit();
 }
@@ -209,7 +203,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_hell		*hell;
 	char		*input;
 	// int			i;
-	// int			j;
+	// int			j;    
 
 	if (argc == 1)
 		ft_printf("running %s\n", argv[0]);
@@ -229,15 +223,18 @@ int	main(int argc, char *argv[], char *envp[])
 	// 	j++;
 	// }
 	hell = setup_hell(envp);
+    hell->env = init_env();
 	run_node(hell, start);
-	run_node(hell, start->next);
-	run_node(hell, start->next->next);
-	run_node(hell, start->next->next->next);
-	run_node(hell, start->next->next->next->next);
-	ft_free_array(hell->path, (void *)hell->path);
+	// run_node(hell, start->next);
+	// run_node(hell, start->next->next);
+	// run_node(hell, start->next->next->next);
+	// run_node(hell, start->next->next->next->next);
+	// ft_free_array(hell->path, (void *)hell->path);
+	ft_env(hell->env);
 	ft_free_nelson(start);
 	// close(19);
 	// close(23);
+    free_env(hell->env);
 	close(hell->std_in);
 	close(hell->std_out);
 	free(hell);
