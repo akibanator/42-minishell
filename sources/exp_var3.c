@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:04:00 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/03 05:53:46 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/03 06:19:51 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,11 @@ static void	replace_exp_var(t_exp_var *node, t_env *env)
 				free(node->str);
 				node->str = ft_strdup(temp->value);
 			}
+			else
+			{
+				free(node->str);
+				node->str = ft_strdup("");
+			}
 		}
 		node = node->next;
 	}
@@ -140,14 +145,21 @@ static char	*join_nodes(t_exp_var *node)
 	return (new_str);
 }
 
+static t_exp_var	*call_split(t_exp_var *node, char *old_str, char *str)
+{
+	node = split_bef(node, old_str);
+	node = split_aft(node, str);
+	return (node);
+}
+
 char	*exp_var(char *str, t_env *env)
 {
 	int			quote;
 	char		*old_str;
-	char		*new_str;
 	t_exp_var	*head;
 	t_exp_var	*current;
 
+	check_quotes(str);
 	quote = -1;
 	old_str = str;
 	head = init_struct(str);
@@ -158,8 +170,7 @@ char	*exp_var(char *str, t_env *env)
 			quote *= -1;
 		if (*str == '$' && quote == -1)
 		{
-			current = split_bef(current, old_str);
-			current = split_aft(current, str);
+			current = call_split(current, old_str, str);
 			str = skip_spaces(str);
 			old_str = str;
 		}
@@ -167,6 +178,5 @@ char	*exp_var(char *str, t_env *env)
 	}
 	split_end(current, old_str);
 	replace_exp_var(head, env);
-	new_str = join_nodes(head);
-	return (new_str);
+	return (join_nodes(head));
 }
