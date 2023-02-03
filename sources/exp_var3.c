@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:04:00 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/30 13:01:12 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/03 05:53:46 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,133 @@ static t_exp_var	*init_struct(char *str)
 	return (head);
 }
 
-static char			*before_dol(t_exp_var *exp, char *str)
+static size_t	gen_strlen(char const *str, char delim)
 {
+	size_t	i;
 
+	i = 0;
+	while (str[i] != delim && str[i])
+		i++;
+	return (i);
+}
+
+static char	*ft_strndup(const char *s1, size_t n)
+{
+	char	*s2;
+
+	s2 = (char *)malloc(n + 1);
+	if (!s2)
+		return (0);
+	ft_memcpy(s2, s1, n);
+	s2[n + 1] = 0;
+	return (s2);
+}
+
+static t_exp_var	*split_bef(t_exp_var *node, char *old_str)
+{
+	size_t	len;
+
+	len = gen_strlen(old_str, '$');
+	node->str = ft_strndup(old_str, len);
+	node->next = malloc(sizeof(t_exp_var));
+	return (node->next);
+}
+
+static t_exp_var	*split_aft(t_exp_var *node, char *old_str)
+{
+	size_t	len;
+
+	len = gen_strlen(old_str, ' ');
+	node->str = ft_strndup(old_str, len);
+	node->next = malloc(sizeof(t_exp_var));
+	return (node->next);
+}
+
+static void	split_end(t_exp_var *node, char *old_str)
+{
+	size_t	len;
+
+	len = gen_strlen(old_str, '\0');
+	node->str = ft_strndup(old_str, len);
+	node->next = malloc(sizeof(t_exp_var));
+	node->next->str = ft_strdup(" ");
+}
+
+static char	*skip_spaces(char *str)
+{
+	while (*str != ' ' && *str != '\0')
+		str++;
+	return (str);
+}
+
+static t_env	*find_exp_var(char	*str, t_env *env)
+{
+	while (ft_strncmp(env->name, "-EOF", 4) != 0)
+	{
+		if (ft_strcmp(str, env->name) == 0)
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
+}
+
+static void	replace_exp_var(t_exp_var *node, t_env *env)
+{
+	t_env	*head;
+	t_env	*temp;
+	char	*str;
+
+	head = env;
+	while (ft_strncmp(node->str, " ", 1) != 0)
+	{
+		env = head;
+		if (ft_strncmp(node->str, "$", 1) == 0)
+		{
+			str = node->str;
+			temp = find_exp_var(++str, env);
+			if (temp != NULL)
+			{
+				free(node->str);
+				node->str = ft_strdup(temp->value);
+			}
+		}
+		node = node->next;
+	}
+}
+
+static char	*join_nodes(t_exp_var *node)
+{
+	char	*new_str;
+	char	*temp;
+
+	temp = node->str;
+	new_str = ft_strdup(node->str);
+	node = node->next;
+	free(temp);
+	while (ft_strncmp(node->str, " ", 1) != 0)
+	{
+		temp = node->str;
+		new_str = ft_strjoin(new_str, node->str);
+		node = node->next;
+		free(temp);
+	}
+	temp = node->str;
+	new_str = ft_strjoin(new_str, node->str);
+	node = node->next;
+	free(temp);
+	return (new_str);
 }
 
 char	*exp_var(char *str, t_env *env)
 {
 	int			quote;
-	size_t		i;
-	char		*temp;
+	char		*old_str;
+	char		*new_str;
 	t_exp_var	*head;
 	t_exp_var	*current;
 
-	i = 0;
 	quote = -1;
-	temp = str;
+	old_str = str;
 	head = init_struct(str);
 	current = head;
 	while (*str != '\0' && head != NULL)
@@ -47,12 +158,15 @@ char	*exp_var(char *str, t_env *env)
 			quote *= -1;
 		if (*str == '$' && quote == -1)
 		{
-			temp = before_dol(current, str);
+			current = split_bef(current, old_str);
+			current = split_aft(current, str);
+			str = skip_spaces(str);
+			old_str = str;
 		}
-		ft_printf("%c", *str);
 		str++;
 	}
-	ft_printf("\n");
-	ft_printf("%s", temp);
-	ft_printf("\n");
+	split_end(current, old_str);
+	replace_exp_var(head, env);
+	new_str = join_nodes(head);
+	return (new_str);
 }

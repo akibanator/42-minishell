@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/30 12:07:54 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/03 05:54:10 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	main(void)
 
 	char	*str;
 	char	*ret_str;
-	str = ft_strdup("ahuah $ahahu 'ahu $ahuhau'");
+	str = ft_strdup("ahuah $USER 'ahu $ahuhau'");
 	ret_str = exp_var(str, env);
-//	ft_printf("%s\n", ret_str);
+	ft_printf("%s\n", ret_str);
 	free(str);
 	free_env(env);
 	return (0);
