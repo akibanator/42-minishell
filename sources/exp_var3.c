@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:04:00 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/03 06:19:51 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:00:12 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,17 @@ static size_t	gen_strlen(char const *str, char delim)
 	i = 0;
 	while (str[i] != delim && str[i])
 		i++;
-	return (i);
+	return (i + 1);
 }
 
 static char	*ft_strndup(const char *s1, size_t n)
 {
 	char	*s2;
 
-	s2 = (char *)malloc(n + 1);
+	s2 = (char *)ft_calloc(n, sizeof(char));
 	if (!s2)
 		return (0);
 	ft_memcpy(s2, s1, n);
-	s2[n + 1] = 0;
 	return (s2);
 }
 
