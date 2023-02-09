@@ -4,21 +4,25 @@ HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= minishell.h
-SOURCES_LIST	= split.c \
+SOURCES_LIST	= check.c \
+				free.c \
 				ft_cd.c \
 				ft_echo.c \
 				ft_env.c \
 				ft_export.c \
-				ft_is_builtin.c \
-				ft_is_redirect.c \
 				ft_pwd.c \
 				ft_unset.c \
+				get.c \
 				read_utils.c \
 				read.c \
+				run_instruction.c \
+				run_main.c \
+				run_redirect.c \
+				setup.c \
+				split.c \
 				start_env.c \
-				check.c \
 				test.c \
-				# main.c
+				# main.c 
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}

@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/31 22:09:56 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:03:58 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define MINISHELL_H
 
 # include "../libft/includes/libft.h"
+# include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
+
 
 typedef struct s_hell {
 	int				std_in;
@@ -40,28 +43,41 @@ typedef struct s_nelson {
 	struct s_nelson	*next;
 }	t_nelson;
 
+//run
 void		run_pipe(t_hell *hell, t_nelson *node);
 void		run_redirect(t_hell *hell, t_nelson *node);
 void		run_cmd(t_hell *hell, t_nelson *node);
 void		run_builtin(t_hell *hell, t_nelson *node);
 void		run_node(t_hell *hell, t_nelson *node);
+void		run_line(t_hell *hell, t_nelson *node);
+
+//setup
 int			set_fds(t_hell *hell, t_nelson *node);
-t_hell		*setup_hell(char *envp[]);
 char		**get_path(char *envp[]);
-void		check_quotes(char *s);
+t_env		*init_env(void);
+t_hell		*setup_hell(char *envp[]);
+
+//checks
 int			ft_is_redirect(char *str);
+int			ft_is_builtin(char	**str);
+void		check_quotes(char *s);
+
+//frees
+void		ft_free_nelson(t_nelson *nelson);
+void		free_env(t_env *env);
+
+//read_input
 char		**get_content(char *s);
 char		*edit_input(char *input, int i, int j);
-t_nelson	*read_input(char *cmdline);
 char		**mini_split(char const *s, char c);
-int			ft_is_builtin(char	**str);
-t_env		*init_env(void);
-void		free_env(t_env *env);
+t_nelson	*read_input(char *cmdline);
+
+//builtins
 int			ft_cd(char *str);
 void		ft_pwd(void);
 void		ft_env(t_env *env);
 void		ft_echo(char **str);
-t_env		*ft_unset(char *str, t_env *env);
 void		ft_export(char *str, t_env *env);
+t_env		*ft_unset(char *str, t_env *env);
 
 #endif

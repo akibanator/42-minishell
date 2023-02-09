@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_is_redirect.c                                    :+:      :+:    :+:   */
+/*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 19:00:02 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/30 03:52:17 by rarobert         ###   ########.fr       */
+/*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
+/*   Updated: 2023/02/09 13:51:42 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_is_redirect(char *str)
+void	run_node(t_hell *hell, t_nelson *node)
 {
-	if (!(ft_strncmp(str, "<", 1)))
-		return (1);
-	if (!(ft_strncmp(str, "<<", 2)))
-		return (1);
-	if (!(ft_strncmp(str, ">", 1)))
-		return (1);
-	if (!(ft_strncmp(str, ">>", 2)))
-		return (1);
-	if (!ft_strncmp(str, "|", 1))
-		return (1);
-	return (0);
+	if (node->content[0][0] == '|')
+		run_pipe(hell, node);
+	else if (ft_is_redirect(node->content[0]))
+		run_redirect(hell, node);
+	else
+	{
+		hell->close = set_fds(hell, node);
+		if (ft_is_builtin(node->content))
+			run_builtin(hell, node);
+		else
+			run_cmd(hell, node);
+	}
+}
+
+void	run_line(t_hell *hell, t_nelson *node)
+{
+	while (node)
+	{
+		run_node(hell, node);
+		node = node->next;
+	}
 }
