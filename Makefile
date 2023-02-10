@@ -22,6 +22,7 @@ SOURCES_LIST	= check.c \
 				setup.c \
 				split.c \
 				start_env.c \
+				ft_exit.c \
 				test.c \
 				# main.c 
 
