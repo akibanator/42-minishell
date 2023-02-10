@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 22:26:05 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:02:55 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		run_line(t_hell *hell, t_nelson *node);
 //setup
 int			set_fds(t_hell *hell, t_nelson *node);
 char		**get_path(char *envp[]);
-t_env		*init_env(void);
+t_env		*init_env(char *envp[]);
 t_hell		*setup_hell(char *envp[]);
 
 //checks

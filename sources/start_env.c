@@ -6,13 +6,11 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/12 15:25:22 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:02:27 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern char	**environ;
 
 static size_t	gen_strlen(char const *str, char delim)
 {
@@ -52,24 +50,22 @@ static t_env	*init_struct(char **str)
 	return (head);
 }
 
-t_env	*init_env(void)
+t_env	*init_env(char *envp[])
 {
-	char	**str;
 	t_env	*head;
 	t_env	*current;
 	char	*pos_chr;
 
-	str = environ;
-	head = init_struct(str);
+	head = init_struct(envp);
 	current = head;
-	while (*str && head != NULL)
+	while (*envp && head != NULL)
 	{
-		current->name_value = ft_strdup(*str);
-		pos_chr = ft_strchr(*str, '=');
+		current->name_value = ft_strdup(*envp);
+		pos_chr = ft_strchr(*envp, '=');
 		current->value = ft_strdup(++pos_chr);
-		current->name = malloc(gen_strlen(*str, '=') * sizeof(char));
-		ft_strlcpy(current->name, *str, gen_strlen(*str, '='));
-		str++;
+		current->name = malloc(gen_strlen(*envp, '=') * sizeof(char));
+		ft_strlcpy(current->name, *envp, gen_strlen(*envp, '='));
+		envp++;
 		current->next = malloc(sizeof(t_env));
 		current = current->next;
 	}

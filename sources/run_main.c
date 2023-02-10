@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 13:51:42 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:57:19 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ void	run_node(t_hell *hell, t_nelson *node)
 
 void	run_line(t_hell *hell, t_nelson *node)
 {
+	t_nelson	*aux;
+
+	aux = node;
 	while (node)
 	{
 		run_node(hell, node);
 		node = node->next;
 	}
+	ft_free_nelson(aux);
 }
