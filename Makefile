@@ -5,6 +5,7 @@ SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= minishell.h
 SOURCES_LIST	= check.c \
+				error.c \
 				free.c \
 				ft_cd.c \
 				ft_echo.c \
