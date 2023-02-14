@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 11:18:37 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:25:05 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
-	while (1)
-	{
+	// while (1)
+	// {
 		input = readline("minishell: ");
-		if (input == NULL)
-			break ;
+		// if (input == NULL)
+			// break ;
 		if (check_input(input))
 			run_line(hell, read_input(edit_input(input, 1, 0)));
 		free(input);
-	}
+	// }
 	free_env(hell->env);
 	close(hell->std_in);
 	close(hell->std_out);

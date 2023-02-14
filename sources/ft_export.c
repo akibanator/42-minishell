@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/12 05:29:57 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:29:48 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t	gen_strlen(char const *str, char delim)
 	return (i + 1);
 }
 
-static int	find_env(char *name, char *value, char *str, t_env *env)
+static int	find_env(char *name, char *value, t_env *env)
 {
 	size_t	len;
 
@@ -42,9 +42,7 @@ static int	find_env(char *name, char *value, char *str, t_env *env)
 	{
 		if (ft_strncmp(env->name, name, len) == 0)
 		{
-			free(env->name_value);
 			free(env->value);
-			env->name_value = ft_strdup(str);
 			env->value = ft_strdup(value);
 			return (1);
 		}
@@ -53,12 +51,11 @@ static int	find_env(char *name, char *value, char *str, t_env *env)
 	return (0);
 }
 
-static void	create_env(char *name, char *value, char *str, t_env *env)
+static void	create_env(char *name, char *value, t_env *env)
 {
 	t_env	*new_env;
 
 	new_env = malloc(sizeof(t_env));
-	new_env->name_value = ft_strdup(str);
 	new_env->name = ft_strdup(name);
 	new_env->value = ft_strdup(value);
 	new_env->next = env->next;
@@ -79,8 +76,8 @@ void	ft_export(char *str, t_env *env)
 	len = gen_strlen(str, '=');
 	name = malloc(len * sizeof(char));
 	ft_strlcpy(name, str, len);
-	if (!find_env(name, value, str, env))
-		create_env(name, value, str, env);
+	if (!find_env(name, value, env))
+		create_env(name, value, env);
 	free(name);
 	free(value);
 }

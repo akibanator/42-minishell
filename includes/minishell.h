@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 11:01:12 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:29:15 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_hell {
 }	t_hell;
 
 typedef struct s_env {
-	char			*name_value;
 	char			*name;
 	char			*value;
 	struct s_env	*next;

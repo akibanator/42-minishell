@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/14 02:06:35 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:29:18 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	free_env(t_env *env)
 	while (ft_strncmp(env->name, "-EOF", 4) != 0)
 	{
 		temp = env->next;
-		free(env->name_value);
 		free(env->name);
 		free(env->value);
 		free(env);
@@ -60,7 +59,6 @@ t_env	*init_env(char *envp[])
 	current = head;
 	while (*envp && head != NULL)
 	{
-		current->name_value = ft_strdup(*envp);
 		pos_chr = ft_strchr(*envp, '=');
 		current->value = ft_strdup(++pos_chr);
 		current->name = malloc(gen_strlen(*envp, '=') * sizeof(char));
