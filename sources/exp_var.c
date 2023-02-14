@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:12:42 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 02:03:47 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:13:09 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	get_size(char *str, int code)
 
 	j = 1;
 	i = -1;
-	while (str[++i] != '$')
+	while (str[i + j] && str[++i] != '$')
 	{
 		if (str[i] == '\'')
 		{
@@ -94,7 +94,7 @@ int	get_size(char *str, int code)
 	}
 	if (code == 0)
 		return (i);
-	while (str[i + j] != '$' && str[i + j] != ' ')
+	while (str[i + j] && str[i + j] != '$' && str[i + j] != ' ')
 		j++;
 	if (code == 1)
 		return (j);

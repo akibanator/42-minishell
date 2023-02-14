@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 01:45:48 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:04:24 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[], char *envp[])
 	// }
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
-	test = ft_strdup("hi $OLDPWD$HOSTTYPE hehe");
+	test = ft_strdup("hi $OLDPWD $HOSTTYPE $USER");
 	ft_printf("test = [%s]\n", test);
 	test = expand_variables(test, hell);
 	ft_printf("test = [%s]\n", test);
