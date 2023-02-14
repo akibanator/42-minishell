@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 11:29:15 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:10:21 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_hell {
 	int				std_out;
 	int				exit_code;
 	int				close;
+	char			*pwd;
 	char			**path;
 	struct s_env	*env;
 	struct s_nelson	*nelson;
@@ -80,8 +81,8 @@ char		**mini_split(char const *s, char c);
 t_nelson	*read_input(char *cmdline);
 
 //builtins
-int			ft_cd(char *str);
-void		ft_pwd(void);
+int			ft_cd(char *str, t_env *head);
+void		ft_pwd(t_env *head);
 void		ft_env(t_env *env);
 void		ft_exit(void);
 void		ft_echo(char **str);
