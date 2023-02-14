@@ -24,8 +24,8 @@ SOURCES_LIST	= check.c \
 				split.c \
 				start_env.c \
 				ft_exit.c \
-				test.c \
-				# main.c 
+				main.c
+				#test.c \
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -50,7 +50,7 @@ all:			${NAME}
 libft:			${LIBFT}
 
 ${NAME}:		${LIBFT} ${OBJECTS_DIR} ${OBJECTS}
-			${CC} ${CFLAGS} ${OBJECTS} ${LIBFT} ${INCLUDES} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJECTS} ${LIBFT} ${INCLUDES} -lreadline -o ${NAME}
 
 ${OBJECTS_DIR}:
 			mkdir -p ${OBJECTS_DIR}
