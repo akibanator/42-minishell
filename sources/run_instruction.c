@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 13:48:48 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:05 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 
 void	run_cmd(t_hell *hell, t_nelson *node)
 {
-	pid_t	child;
-
 	node->content[0] = get_cmd(hell, node);
-	child = fork();
-	if (child == 0)
+	hell->child = fork();
+	if (hell->child == 0)
 	{
 		close(hell->std_in);
 		close(hell->std_out);

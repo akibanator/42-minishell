@@ -24,7 +24,7 @@ SOURCES_LIST	= check.c \
 				split.c \
 				start_env.c \
 				ft_exit.c \
-				main.c
+				main.c \
 				#test.c \
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}

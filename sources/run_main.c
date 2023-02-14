@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 22:57:19 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:43:27 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	run_line(t_hell *hell, t_nelson *node)
 		node = node->next;
 	}
 	ft_free_nelson(aux);
+	wait (&hell->child);
 }
