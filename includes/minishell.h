@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 23:02:55 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 01:40:49 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,16 @@ t_env		*init_env(char *envp[]);
 t_hell		*setup_hell(char *envp[]);
 
 //checks
+int			have_var(char *str);
 int			ft_is_redirect(char *str);
 int			ft_is_builtin(char	**str);
 void		check_quotes(char *s);
+
+//var_expansion
+int			get_size(char *str, int code);
+char		*get_value(char *key, t_env *head);
+char		**split_var(char *str);
+char		*expand_variables(char *str, t_hell *hell);
 
 //frees
 void		ft_free_nelson(t_nelson *nelson);
