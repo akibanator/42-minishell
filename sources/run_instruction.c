@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 11:03:40 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:58:12 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 	child = fork();
 	if (child == 0)
 	{
+		close(hell->std_in);
+		close(hell->std_out);
 		execve(node->content[0], node->content, 0);
 		exit(1);
 	}

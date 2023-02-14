@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 11:25:05 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:03:15 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ int	main(int argc, char *argv[], char *envp[])
 	t_hell		*hell;
 	char		*input;
 
-	if (argc == 1)
-		ft_printf("running %s\n", argv[0]);
-	else
-	{
-		ft_printf("invalid argument");
-		exit(1);
-	}
+    if (argc != 1 || argv[0][0] == 0)
+    {
+        ft_printf("invalid argument");
+        exit(1);
+    }
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
 	// while (1)
