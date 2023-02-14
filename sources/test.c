@@ -3,42 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 23:02:37 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:10:51 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <fcntl.h>
 
+static int	check_input(char *input)
+{
+	while (*input != '\0')
+	{
+		if (*input != ' ')
+			return (1);
+		input++;
+	}
+	return (0);
+}
+
+static char *check_pwd(t_hell *hell)
+{
+	return ;
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_hell		*hell;
-	// int			i;
-	// int			j;    
+	char		*input;
+	char		*curr_dir;
 
-	if (argc == 1)
+	if (argc != 1)
+	{
+		ft_printf("invalid argument %s\n", argv[0]);
+		exit(1);
+	}
+	else
 		ft_printf("running %s\n", argv[0]);
-	// input = edit_input(argv[1], 1, -1);
-	// ft_printf("noedit input = %s\n", argv[1]);
-	// ft_printf("edited input = %s\n", input);
-	// free(input);
-	// j = 0;
-	// while (input_list)
-	// {
-	// 	i = -1;
-	// 	while (input_list->content[++i])
-	// 		ft_printf("content[%d][%d] = [%s]\n", j, i, input_list->content[i]);
-	// 	input_list = input_list->next;
-	// 	j++;
-	// }
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
-	run_line(hell, read_input(edit_input(argv[1], 1, -1)));
-	// close(19);
-	// close(23);
+	while (1)
+	{
+		curr_dir =  check_pwd(hell);
+		input = readline(curr_dir);
+		if (input == NULL)
+			break ;
+		if (check_input(input))
+			run_line(hell, read_input(edit_input(input, 1, 0)));
+		free(input);
+	}
 	free_env(hell->env);
 	close(hell->std_in);
 	close(hell->std_out);

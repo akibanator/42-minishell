@@ -24,7 +24,7 @@ SOURCES_LIST	= check.c \
 				start_env.c \
 				ft_exit.c \
 				test.c \
-				# main.c 
+				# main.c
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -39,7 +39,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -g -Wall -Werror -Wextra
+CFLAGS			= -g3 -Wall -Werror -Wextra
 
 RM 				= rm -f
 
@@ -49,7 +49,7 @@ all:			${NAME}
 libft:			${LIBFT}
 
 ${NAME}:		${LIBFT} ${OBJECTS_DIR} ${OBJECTS}
-			${CC} ${CFLAGS} ${OBJECTS} ${LIBFT} ${INCLUDES} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJECTS} ${LIBFT} ${INCLUDES} -lreadline -o ${NAME}
 
 ${OBJECTS_DIR}:
 			mkdir -p ${OBJECTS_DIR}

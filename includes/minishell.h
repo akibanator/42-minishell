@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 23:02:55 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 01:41:48 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 
 typedef struct s_hell {
@@ -24,13 +26,13 @@ typedef struct s_hell {
 	int				std_out;
 	int				exit_code;
 	int				close;
+	char			*pwd;
 	char			**path;
 	struct s_env	*env;
 	struct s_nelson	*nelson;
 }	t_hell;
 
 typedef struct s_env {
-	char			*name_value;
 	char			*name;
 	char			*value;
 	struct s_env	*next;
@@ -73,7 +75,7 @@ char		**mini_split(char const *s, char c);
 t_nelson	*read_input(char *cmdline);
 
 //builtins
-int			ft_cd(char *str);
+int			ft_cd(char *str, t_env *head);
 void		ft_pwd(void);
 void		ft_env(t_env *env);
 void		ft_exit(void);

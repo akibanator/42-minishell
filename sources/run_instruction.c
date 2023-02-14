@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 13:51:40 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 00:36:09 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	run_builtin(t_hell *hell, t_nelson *node)
 	else if (!ft_strncmp(node->content[0], "env", 3))
 		ft_env(hell->env);
 	if (!ft_strncmp(node->content[0], "cd", 2))
-		ft_cd(node->content[1]);
+		ft_cd(node->content[1], hell->env);
 	else if (!ft_strncmp(node->content[0], "export", 6))
 		ft_export(node->content[0], hell->env);
 	else if (!ft_strncmp(node->content[0], "unset", 5))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/31 22:09:43 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 01:14:05 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_env	*ft_unset(char *str, t_env *env)
 			if (prev != NULL)
 			{
 				temp = env->next;
-				free(env->name_value);
 				free(env->name);
 				free(env->value);
 				free(env);
@@ -39,7 +38,6 @@ t_env	*ft_unset(char *str, t_env *env)
 			{
 				temp = env;
 				env = env->next;
-				free(temp->name_value);
 				free(temp->name);
 				free(temp->value);
 				free(temp);
