@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/09 23:02:27 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:06:35 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_env	*init_env(char *envp[])
 		current = current->next;
 	}
 	current->name = ft_strdup("-EOF");
+	current->next = NULL;
 	return (head);
 }

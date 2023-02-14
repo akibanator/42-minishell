@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:12:42 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 01:40:04 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:03:47 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_value(char *key, t_env *head)
 			return (head->value);
 		head = head->next;
 	}
-	return (ft_strdup(""));
+	return ("");
 }
 
 char	*expand_variables(char *str, t_hell *hell)
