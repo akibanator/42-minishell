@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 16:44:31 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:49:44 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ static int	check_input(char *input)
 	return (0);
 }
 
+static void	update_pwd(t_hell *hell)
+{
+	if (hell->pwd)
+		free(hell->pwd);
+	hell->pwd = ft_strjoin(get_value("PWD", hell->env), "$ ");
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_hell		*hell;
@@ -35,16 +42,16 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
-	hell->pwd = ft_strjoin(get_value("PWD", hell->env), "$ ");
-	while (1)
-	{
+	// while (1)
+	// {
+		update_pwd(hell);
 		input = readline(hell->pwd);
-		if (input == NULL)
-			break ;
+		// if (input == NULL)
+		// 	break ;
 		if (check_input(input))
 			run_line(hell, read_input(edit_input(input, 1, 0)));
 		free(input);
-	}
+	// }
 	free(hell->pwd);
 	free_env(hell->env);
 	close(hell->std_in);

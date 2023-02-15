@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 16:43:01 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:37:19 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			have_var(char *str);
 int			ft_is_redirect(char *str);
 int			ft_is_builtin(char	**str);
 void		check_quotes(char *s);
+t_env		*check_pwd(t_env *head);
 
 //var_expansion
 int			get_size(char *str, int code);
