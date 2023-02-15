@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 23:36:26 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/15 00:53:00 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_hell {
 	int				std_in;
 	int				std_out;
 	int				exit_code;
-	int				close;
 	pid_t			child;
 	char			*pwd;
 	char			**path;
@@ -56,7 +55,7 @@ void		run_node(t_hell *hell, t_nelson *node);
 void		run_line(t_hell *hell, t_nelson *node);
 
 //setup
-int			set_fds(t_hell *hell, t_nelson *node);
+void		set_fds(t_hell *hell, t_nelson *node);
 char		**get_path(char *envp[]);
 t_env		*init_env(char *envp[]);
 t_hell		*setup_hell(char *envp[]);

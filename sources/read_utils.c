@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:08:37 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/12 01:29:47 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/15 01:52:43 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	**get_redirect(char *s)
 	char	**redir;
 
 	redir = (char **)malloc(3 * sizeof(char *));
-	if ((*s + 1) == *s)
+	if ((*(s + 1)) == *s)
 	{
 		redir[0] = (char *)malloc(3 * sizeof(char));
 		redir[0][0] = *s++;

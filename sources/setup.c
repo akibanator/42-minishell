@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 17:40:28 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/15 00:51:37 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,17 @@ t_hell	*setup_hell(char *envp[])
 	return (hell);
 }
 
-int	set_fds(t_hell *hell, t_nelson *node)
+void	set_fds(t_hell *hell, t_nelson *node)
 {
 	while (node)
 	{
 		if (node->content[0][0] == '|')
 		{
 			run_pipe(hell, node);
-			return (node->pipe[0]);
+			return ;
 		}
 		if (ft_is_redirect(node->content[0]))
 			run_redirect(hell, node);
 		node = node->next;
 	}
-	return (-2);
 }

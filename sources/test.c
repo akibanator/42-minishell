@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 10:04:24 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/15 02:23:50 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_hell		*hell;
 	char		*test;
+	// char		*input;
+	// t_nelson	*input_list;
 	// int			i;
-	// int			j;    
+	// int			j;
 
 	if (argc == 1)
 		ft_printf("running %s\n", argv[0]);
 	// input = edit_input(argv[1], 1, -1);
 	// ft_printf("noedit input = %s\n", argv[1]);
 	// ft_printf("edited input = %s\n", input);
-	// free(input);
+	// input_list = read_input(input);
 	// j = 0;
 	// while (input_list)
 	// {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 23:17:17 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/15 01:29:43 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@ static int	check_input(char *input)
 	return (0);
 }
 
-static void	update_pwd(t_hell *hell)
-{
-	if (hell->pwd)
-		free(hell->pwd);
-	hell->pwd = ft_strjoin(get_value("PWD", hell->env), "$ ");
-}
+// static void	update_pwd(t_hell *hell)
+// {
+// 	if (hell->pwd)
+// 		free(hell->pwd);
+// 	hell->pwd = ft_strjoin(get_value("PWD", hell->env), "$ ");
+// }
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_hell		*hell;
 	char		*input;
 
+	input = NULL;
 	if (argc != 1 || argv[0][0] == 0)
 	{
 		ft_printf("invalid argument");
@@ -44,11 +45,9 @@ int	main(int argc, char *argv[], char *envp[])
 	hell->env = init_env(envp);
 	while (1)
 	{
-		update_pwd(hell);
-		sig_setup_prompt();
-		input = readline(hell->pwd);
-		if (input == NULL)
-			break ;
+		// update_pwd(hell);
+		// sig_setup_prompt();
+		input = readline("[hi]");
 		if (check_input(input))
 			run_line(hell, read_input(edit_input(input, 1, 0)));
 		free(input);

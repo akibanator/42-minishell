@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:57 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/09 13:51:46 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/15 02:23:26 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	run_redirect(t_hell *hell, t_nelson *node)
 		return ;
 	if (node->content[0][0] == '<')
 	{
-		if (hell->std_in != -2)
-			close(hell->std_in);
+		// if (hell->std_in != -2)
+		// 	close(hell->std_in);
 		if ((node->content[0][0]) != node->content[0][1])
 			hell->std_in = open(node->content[1], O_RDONLY);
 		else
@@ -49,8 +49,8 @@ void	run_redirect(t_hell *hell, t_nelson *node)
 	}
 	if (node->content[0][0] == '>')
 	{
-		if (hell->std_out != -2)
-			close(hell->std_out);
+		// if (hell->std_out != -2)
+		// 	close(hell->std_out);
 		if ((node->content[0][0]) != node->content[0][1])
 			hell->std_out = open(node->content[1],
 					O_CREAT | O_WRONLY | O_TRUNC, 0644);

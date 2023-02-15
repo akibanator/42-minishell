@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:50:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/01/04 08:09:48 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/15 00:45:43 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ void	ft_echo(char **str)
 		free(new_str);
 	}
 	else
-		ft_printf("%s\n", str[1]);
+	{
+		while(*++str)
+			ft_printf("%s ", *str);
+		ft_printf("\n");
+	}
 }

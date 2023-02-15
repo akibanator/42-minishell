@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/31 21:03:36 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/15 02:24:13 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ char	*edit_input(char *input, int i, int j)
 	st[++i] = input[++j];
 	while (input[++j])
 	{
-		if ((input[j - 1] == '<' || input[j - 1] == '>') && input[j] == ' ')
-			st[++i] = input[j - 1];
 		st[++i] = input[j];
-		if (ft_is_redirect(&st[i]) && (st[i - 1] != ' ') && st[i - 1] != st[i])
+		if (ft_is_redirect(&st[i]) && (input[i + 1] == ' '))
 		{
-			st[i + 1] = st[i];
-			st[i++] = ' ';
+			j++;
+			st[j] = input[j + 1];
 		}
 	}
 	return (st);

@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 16:43:27 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/15 01:33:14 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	run_node(t_hell *hell, t_nelson *node)
 		run_redirect(hell, node);
 	else
 	{
-		hell->close = set_fds(hell, node);
+		set_fds(hell, node);
 		if (ft_is_builtin(node->content))
 			run_builtin(hell, node);
 		else

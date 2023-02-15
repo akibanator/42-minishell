@@ -26,8 +26,8 @@ SOURCES_LIST	= check.c \
 				ft_exit.c \
 				setup_signal.c \
 				handle_signal.c \
-				main.c
-				#test.c \
+				test.c \
+				# main.c \
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
