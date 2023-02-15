@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 17:49:44 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:27:11 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
-	// while (1)
-	// {
+	while (1)
+	{
 		update_pwd(hell);
 		input = readline(hell->pwd);
-		// if (input == NULL)
-		// 	break ;
+		if (input == NULL)
+			break ;
 		if (check_input(input))
 			run_line(hell, read_input(edit_input(input, 1, 0)));
 		free(input);
-	// }
+	}
 	free(hell->pwd);
 	free_env(hell->env);
 	close(hell->std_in);
