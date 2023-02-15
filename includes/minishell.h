@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 17:37:19 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:36:26 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
 typedef struct s_hell {
 	int				std_in;
@@ -94,5 +95,9 @@ t_env		*ft_unset(char *str, t_env *env);
 
 //error
 void		cmd_error(char *print, char *error, int flag);
+
+void		sig_int_handle(int signal);
+void 		sig_setup_exec(pid_t id);
+void		sig_setup_prompt(void);
 
 #endif

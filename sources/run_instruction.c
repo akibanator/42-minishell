@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 16:44:05 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:27:16 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 {
 	node->content[0] = get_cmd(hell, node);
 	hell->child = fork();
+	sig_setup_exec(hell->child);
 	if (hell->child == 0)
 	{
 		close(hell->std_in);

@@ -1,0 +1,4 @@
+signal em here_doc
+
+fazer um fork e chamar readline
+criar uma function e chamar um handler no processo filho
