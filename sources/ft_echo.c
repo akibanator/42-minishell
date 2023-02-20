@@ -3,58 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:50:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/15 00:45:43 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:41 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*ft_remove_new_line(char *str)
+static void	print_echo(char **str, int flag_n, int count)
 {
-	size_t	i;
-	size_t	len_str;
-	char	*initial_str;
-	char	*new_str;
+	int		i;
+	char	c;
 
-	i = 0;
-	initial_str = str;
-	while (*str != '\0')
-	{
-		if (*str == '\n')
-			i++;
+	while (count--)
 		str++;
-	}
-	str = initial_str;
-	len_str = ft_strlen(str);
-	new_str = malloc((len_str - i) + 1 * sizeof(char));
-	initial_str = new_str;
-	while (*str != '\0')
+	while (*str)
 	{
-		while (*str == '\n')
-			str++;
-		*new_str++ = *str++;
+		i = 0;
+		while (*(*str + i) != '\0')
+		{
+			c = *(*str + i);
+			write(1, &c, 1);
+			i++;
+		}
+		str++;
+		if (*str)
+			write(1, " ", 1);
 	}
-	*new_str = '\0';
-	return (initial_str);
+	if (!flag_n)
+		write(1, "\n", 1);
 }
 
 void	ft_echo(char **str)
 {
-	char	*new_str;
+	int	flag_n;
+	int	i;
 
-	if (!ft_strncmp("-n", str[1], 2))
+	flag_n = 0;
+	i = 1;
+	if ((ft_strcmp(str[i], "-n") == 0))
 	{
-		new_str = ft_remove_new_line(str[2]);
-		ft_printf("%s", new_str);
-		free(new_str);
+		while ((ft_strcmp(str[i], "-n") == 0) && (str[i + 1] != NULL))
+			i++;
+		flag_n = 1;
 	}
+	if (flag_n == 0)
+		print_echo(str, 0, 1);
 	else
-	{
-		while(*++str)
-			ft_printf("%s ", *str);
-		ft_printf("\n");
-	}
+		print_echo(str, 1, i);
 }
