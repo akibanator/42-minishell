@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/14 13:37:55 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:24:01 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_env(t_env *env)
 {
 	t_env	*temp;
 
-	while (ft_strncmp(env->name, "-EOF", 4) != 0)
+	while (env)
 	{
 		temp = env->next;
 		free(env->name);
@@ -34,19 +34,6 @@ void	free_env(t_env *env)
 		free(env);
 		env = temp;
 	}
-	free(env->name);
-	free(env);
-}
-
-static t_env	*init_struct(char **str)
-{
-	t_env	*head;
-
-	if (*str)
-		head = malloc(sizeof(t_env));
-	else
-		return (NULL);
-	return (head);
 }
 
 t_env	*init_env(char *envp[])
@@ -55,19 +42,21 @@ t_env	*init_env(char *envp[])
 	t_env	*current;
 	char	*pos_chr;
 
-	head = init_struct(envp);
+	head = malloc(sizeof(t_env));
 	current = head;
-	while (*envp && head != NULL)
+	while (*envp)
 	{
 		pos_chr = ft_strchr(*envp, '=');
 		current->value = ft_strdup(++pos_chr);
 		current->name = malloc(gen_strlen(*envp, '=') * sizeof(char));
 		ft_strlcpy(current->name, *envp, gen_strlen(*envp, '='));
 		envp++;
-		current->next = malloc(sizeof(t_env));
-		current = current->next;
+		if (*envp)
+		{
+			current->next = malloc(sizeof(t_env));
+			current = current->next;
+		}
 	}
-	current->name = ft_strdup("-EOF");
 	current->next = NULL;
 	return (head);
 }

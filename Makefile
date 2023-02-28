@@ -26,8 +26,8 @@ SOURCES_LIST	= check.c \
 				ft_exit.c \
 				setup_signal.c \
 				handle_signal.c \
-				test.c \
-				# main.c \
+				main.c \
+				# test.c \
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -42,7 +42,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -g3 -Wall -Werror -Wextra
+CFLAGS			= -g3 #-Wall -Werror -Wextra
 
 RM 				= rm -f
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 01:29:43 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:37:46 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,20 @@ int	main(int argc, char *argv[], char *envp[])
 	hell->env = init_env(envp);
 	while (1)
 	{
-		// update_pwd(hell);
-		// sig_setup_prompt();
-		input = readline("[hi]");
-		if (check_input(input))
-			run_line(hell, read_input(edit_input(input, 1, 0)));
+//		update_pwd(hell);
+		sig_setup_prompt();
 		free(input);
+		input = readline("[hi]");
+		if (input == NULL)
+			break ;
+		if (check_input(input))
+		{
+			run_line(hell, read_input(edit_input(input, 1, 0)));
+			add_history(input);
+		}
 	}
-	free(hell->pwd);
+	rl_clear_history();
+//	free(hell->pwd);
 	free_env(hell->env);
 	close(hell->std_in);
 	close(hell->std_out);
