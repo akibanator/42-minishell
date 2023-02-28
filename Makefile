@@ -42,7 +42,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -g3 #-Wall -Werror -Wextra
+CFLAGS			= -g3 -Wall -Werror -Wextra
 
 RM 				= rm -f
 
