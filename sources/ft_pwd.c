@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:26:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/28 15:53:04 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:17:03 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	ft_pwd(t_env *head)
 	else
 	{
 		cmd_error("pwd: ", "No such file or directory", 0);
-		ft_cd("/", head);
+		ft_cd(NULL, head);
 	}
 }
