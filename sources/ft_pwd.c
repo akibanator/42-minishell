@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:26:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/28 02:05:14 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:46:16 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ t_env	*check_pwd(t_env *head)
 		head->value = ft_strdup(current_dir);
 		return (head);
 	}
-	else
-		ft_cd("/", head);
-	check_pwd(head);
+	ft_cd("/", head);
+	return (check_pwd(head));
 }
 
 void	ft_pwd(t_env *head)
