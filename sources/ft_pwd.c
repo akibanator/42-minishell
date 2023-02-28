@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:26:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/14 13:41:14 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/02/28 02:05:14 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,29 @@ t_env	*check_pwd(t_env *head)
 {
 	char	current_dir[4096];
 
-	while (head)
-	{
-		if (ft_strcmp(head->name, "PWD") == 0)
-			return (head);
-		head = head->next;
-	}
 	if (getcwd(current_dir, sizeof(current_dir)))
 	{
-		head = malloc(sizeof(t_env));
+		while (head)
+		{
+			if (ft_strcmp(head->name, "PWD") == 0)
+				return (head);
+			if (head->next)
+				head = head->next;
+			else
+			{
+				head->next = malloc(sizeof(t_env));
+				head = head->next;
+				head->next = NULL;
+				break ;
+			}
+		}
 		head->name = ft_strdup("PWD");
 		head->value = ft_strdup(current_dir);
-		head->next = NULL;
+		return (head);
 	}
 	else
-	{
-		cmd_error("pwd: ", current_dir, 0);
-		return (NULL);
-	}
-	return (head);
+		ft_cd("/", head);
+	check_pwd(head);
 }
 
 void	ft_pwd(t_env *head)
@@ -44,4 +48,9 @@ void	ft_pwd(t_env *head)
 	env_pwd = check_pwd(head);
 	if (env_pwd)
 		ft_printf("%s\n", env_pwd->value);
+	else
+	{
+		cmd_error("pwd: ", "No such file or directory", 0);
+		ft_cd("/", head);
+	}
 }
