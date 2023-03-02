@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:57 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 02:23:26 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/02 01:24:53 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,10 @@ void	run_pipe(t_hell *hell, t_nelson *node)
 {
 	if (node->is_done == 2)
 		return ;
-	if (node->is_done == 0)
-	{
-		dup2(node->pipe[1], STDOUT_FILENO);
-		close(node->pipe[1]);
-	}
 	if (node->is_done == 1)
 	{
 		dup2(node->pipe[0], STDIN_FILENO);
-		close(STDOUT_FILENO);
-		dup(hell->std_out);
-		close(hell->std_out);
-		hell->std_out = dup(STDOUT_FILENO);
+		dup2(hell->std_out, STDOUT_FILENO);
 		close(node->pipe[0]);
 	}
 	node->is_done++;
@@ -35,29 +27,28 @@ void	run_pipe(t_hell *hell, t_nelson *node)
 
 void	run_redirect(t_hell *hell, t_nelson *node)
 {
+	int	fd;
+
 	if (node->is_done)
 		return ;
 	if (node->content[0][0] == '<')
 	{
-		// if (hell->std_in != -2)
-		// 	close(hell->std_in);
 		if ((node->content[0][0]) != node->content[0][1])
-			hell->std_in = open(node->content[1], O_RDONLY);
+			fd = open(node->content[1], O_RDONLY);
 		else
 			ft_printf("here_doc");
-		dup2(hell->std_in, STDIN_FILENO);
+		dup2(fd, STDIN_FILENO);
 	}
 	if (node->content[0][0] == '>')
 	{
-		// if (hell->std_out != -2)
-		// 	close(hell->std_out);
 		if ((node->content[0][0]) != node->content[0][1])
-			hell->std_out = open(node->content[1],
+			fd = open(node->content[1],
 					O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		else
-			hell->std_out = open(node->content[1],
+			fd = open(node->content[1],
 					O_CREAT | O_WRONLY | O_APPEND, 0644);
-		dup2(hell->std_out, STDOUT_FILENO);
+		dup2(fd, STDOUT_FILENO);
 	}
+	close (fd);
 	node->is_done++;
 }

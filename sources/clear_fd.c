@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   clear_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 05:55:46 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/02 00:12:54 by akenji-a         ###   ########.fr       */
+/*   Created: 2023/03/01 22:39:05 by akenji-a          #+#    #+#             */
+/*   Updated: 2023/03/01 22:40:29 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(void)
+void	clear_fd(void)
 {
-	clear_fd();
-	exit(0);
+	int	fd;
+
+	fd = open("tempfile", O_RDONLY | O_CREAT);
+	if (fd < 0)
+		return ;
+	while (fd > STDERR_FILENO)
+		close(fd--);
+	unlink("tempfile");
 }

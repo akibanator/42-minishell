@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 23:27:16 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:21:15 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 	sig_setup_exec(hell->child);
 	if (hell->child == 0)
 	{
-		close(hell->std_in);
-		close(hell->std_out);
 		execve(node->content[0], node->content, 0);
 		exit(1);
 	}
@@ -66,7 +64,7 @@ void	run_builtin(t_hell *hell, t_nelson *node)
 	else if (!ft_strncmp(node->content[0], "export", 6))
 		ft_export(node->content[0], hell->env);
 	else if (!ft_strncmp(node->content[0], "unset", 5))
-		hell->env = ft_unset(node->content[1], hell->env);
+		ft_unset(node->content[1], hell->env);
 	else if (!ft_strncmp(node->content[0], "exit", 4))
 		ft_exit();
 }

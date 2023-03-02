@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/28 01:31:10 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:12:58 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	main(int argc, char *argv[], char *envp[])
 		update_pwd(hell);
 		sig_setup_prompt();
 		free(input);
+		// dup2(hell->std_in, STDIN_FILENO);
+		// dup2(hell->std_out, STDOUT_FILENO);
 		input = readline(hell->pwd);
 		if (input == NULL)
 			break ;

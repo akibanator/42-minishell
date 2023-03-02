@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 02:24:13 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/01 23:32:33 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ static t_nelson	*get_node(char *s)
 	nelson->is_done = FALSE;
 	nelson->next = NULL;
 	if (*s == '|')
+	{
 		pipe(nelson->pipe);
+		dup2(nelson->pipe[1], STDOUT_FILENO);
+		close(nelson->pipe[1]);
+	}
 	while (*s == ' ')
 		s++;
 	nelson->content = get_content(s);

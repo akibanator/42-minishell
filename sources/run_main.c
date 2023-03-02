@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 01:33:14 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:12:02 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	run_line(t_hell *hell, t_nelson *node)
 		node = node->next;
 	}
 	ft_free_nelson(aux);
-	wait (&hell->child);
+	waitpid(hell->child, NULL, 0);
+	dup2(hell->std_in, STDIN_FILENO);
+	dup2(hell->std_out, STDOUT_FILENO);
 }

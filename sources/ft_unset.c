@@ -6,45 +6,42 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/14 13:37:23 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/01 21:50:48 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*ft_unset(char *str, t_env *env)
+void	*first_node(t_env *env)
 {
-	size_t	len_str;
-	size_t	len_envname;
-	t_env	*prev;
-	t_env	*temp;
 
-	prev = NULL;
-	len_str = ft_strlen(str);
-	while (ft_strncmp(env->name, "-EOF", 4) != 0)
+}
+
+void	*unset_node(t_env *env)
+{
+
+}
+
+void	ft_unset(char *str, t_env *head)
+{
+	int	node_pos;
+
+	node_pos = 0;
+	if (str == NULL)
+		return ;
+	while (head)
 	{
-		len_envname = ft_strlen(env->name);
-		if (!ft_strncmp(env->name, str, len_str) && len_str == len_envname)
+		if (!(ft_strcmp(head->name, str)) && node_pos == 0)
 		{
-			if (prev != NULL)
-			{
-				temp = env->next;
-				free(env->name);
-				free(env->value);
-				free(env);
-				prev->next = temp;
-			}
-			else
-			{
-				temp = env;
-				env = env->next;
-				free(temp->name);
-				free(temp->value);
-				free(temp);
-			}
+			first_node(head);
+			break ;
 		}
-		prev = env;
-		env = env->next;
+		if (!(ft_strcmp(head->name, str)) && node_pos == 1)
+		{
+			unset_node(head);
+			break ;
+		}
+		node_pos = 1;
+		head = head->next;
 	}
-	return (env);
 }
