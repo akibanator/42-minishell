@@ -28,6 +28,7 @@ SOURCES_LIST	=	ft_atoi.c \
 				ft_strcmp.c \
 				ft_strnstr.c \
 				ft_strrchr.c \
+				ft_strstr.c \
 				ft_strisdigit.c \
 				ft_tolower.c \
 				ft_toupper.c \

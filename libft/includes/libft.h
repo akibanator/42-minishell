@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 01:09:47 by rarobert          #+#    #+#             */
-/*   Updated: 2022/12/27 03:44:45 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:16:04 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_list
 char		*ft_strdup(const char *src);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
+char		*ft_strstr(const char *haystack, const char *needle);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 int			ft_toupper(int c);
 int			ft_tolower(int c);

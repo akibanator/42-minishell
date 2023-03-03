@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/03 00:53:06 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:13:11 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,6 @@ void	free_env(t_env *env)
 		free(env);
 		env = temp;
 	}
-}
-
-char	*ft_strstr(const char *haystack, const char *needle)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] != '\0')
-	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && haystack[i + j] != '\0')
-		{
-			if (needle[j + 1] == '\0')
-				return ((char *)&haystack[i]);
-			j++;
-		}
-		i++;
-	}
-	return (0);
 }
 
 static int	check_workspace_vars(char *var)
