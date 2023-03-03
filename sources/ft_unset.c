@@ -6,45 +6,55 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/14 13:37:23 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:37:16 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*ft_unset(char *str, t_env *env)
+static t_env	*unset_first_node(t_env *head)
 {
-	size_t	len_str;
-	size_t	len_envname;
-	t_env	*prev;
 	t_env	*temp;
 
-	prev = NULL;
-	len_str = ft_strlen(str);
-	while (ft_strncmp(env->name, "-EOF", 4) != 0)
+	temp = head->next;
+	free(head->name);
+	free(head->value);
+	free(head);
+	return (temp);
+}
+
+static void	unset_node(t_env *next_env, t_env *env)
+{
+	t_env	*temp;
+
+	temp = next_env->next;
+	free(next_env->name);
+	free(next_env->value);
+	free(next_env);
+	env->next = temp;
+}
+
+t_env	*ft_unset(char *str, t_env *env)
+{
+	t_env	*head;
+
+	head = env;
+	if (str == NULL)
+		return (head);
+	if (!ft_strcmp(env->name, str))
+		return (unset_first_node(env));
+	env = env->next;
+	while (env)
 	{
-		len_envname = ft_strlen(env->name);
-		if (!ft_strncmp(env->name, str, len_str) && len_str == len_envname)
+		if (env->next)
 		{
-			if (prev != NULL)
+			if (!ft_strcmp(env->next->name, str))
 			{
-				temp = env->next;
-				free(env->name);
-				free(env->value);
-				free(env);
-				prev->next = temp;
-			}
-			else
-			{
-				temp = env;
-				env = env->next;
-				free(temp->name);
-				free(temp->value);
-				free(temp);
+				unset_node(env->next, env);
+				break ;
 			}
 		}
-		prev = env;
 		env = env->next;
 	}
-	return (env);
+	return (head);
 }

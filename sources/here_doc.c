@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/26 12:36:12 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:50:05 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@ char	*here_doc(char *limiter)
 	char	*doc;
 
 	doc = ft_strdup("");
-	here = get_next_line(STDIN_FILENO);
+	here = readline("> ");
+	if (here == NULL)
+		return (doc);
 	while (ft_strncmp(limiter, here, ft_strlen(limiter)))
 	{
-		if (ft_strncmp(limiter, here, ft_strlen(limiter)))
-			doc = ft_strjoin_free(doc, here);
+		doc = ft_strjoin_free(doc, here);
 		free(here);
-		here = get_next_line(STDIN_FILENO);
+		here = readline("> ");
+		if (here == NULL)
+			break ;
 	}
 	free(here);
+	// solucao alternativa, retornar em um arquivo temporario e depois unlink para remover o arquivo
 	return (doc);
 }
