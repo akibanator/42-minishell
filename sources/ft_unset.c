@@ -6,42 +6,55 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/01 21:50:48 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:37:16 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*first_node(t_env *env)
+static t_env	*unset_first_node(t_env *head)
 {
+	t_env	*temp;
 
+	temp = head->next;
+	free(head->name);
+	free(head->value);
+	free(head);
+	return (temp);
 }
 
-void	*unset_node(t_env *env)
+static void	unset_node(t_env *next_env, t_env *env)
 {
+	t_env	*temp;
 
+	temp = next_env->next;
+	free(next_env->name);
+	free(next_env->value);
+	free(next_env);
+	env->next = temp;
 }
 
-void	ft_unset(char *str, t_env *head)
+t_env	*ft_unset(char *str, t_env *env)
 {
-	int	node_pos;
+	t_env	*head;
 
-	node_pos = 0;
+	head = env;
 	if (str == NULL)
-		return ;
-	while (head)
+		return (head);
+	if (!ft_strcmp(env->name, str))
+		return (unset_first_node(env));
+	env = env->next;
+	while (env)
 	{
-		if (!(ft_strcmp(head->name, str)) && node_pos == 0)
+		if (env->next)
 		{
-			first_node(head);
-			break ;
+			if (!ft_strcmp(env->next->name, str))
+			{
+				unset_node(env->next, env);
+				break ;
+			}
 		}
-		if (!(ft_strcmp(head->name, str)) && node_pos == 1)
-		{
-			unset_node(head);
-			break ;
-		}
-		node_pos = 1;
-		head = head->next;
+		env = env->next;
 	}
+	return (head);
 }

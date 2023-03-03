@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/01 22:40:42 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 22:06:33 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		ft_env(t_env *env);
 void		ft_exit(void);
 void		ft_echo(char **str);
 void		ft_export(char *str, t_env *env);
-void		ft_unset(char *str, t_env *head);
+t_env		*ft_unset(char *str, t_env *env);
 
 //error
 void		cmd_error(char *print, char *error, int flag);
