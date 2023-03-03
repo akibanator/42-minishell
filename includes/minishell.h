@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 20:32:59 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:19:51 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ typedef struct s_hell {
 	int				std_in;
 	int				std_out;
 	int				exit_code;
+	int				cmd_nbr;
 	pid_t			*pids;
+	pid_t			child;
 	char			*pwd;
 	char			**path;
 	struct s_env	*env;
@@ -81,7 +83,7 @@ void		free_env(t_env *env);
 char		**get_content(char *s);
 char		*edit_input(char *input, int i, int j);
 char		**mini_split(char const *s, char c);
-t_nelson	*read_input(char *cmdline);
+t_nelson	*read_input(t_hell *hell, char *cmdline);
 
 //builtins
 int			ft_cd(char *str, t_env *head);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/01 23:32:33 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:22:41 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static t_nelson	*get_node(char *s)
 	return (nelson);
 }
 
-t_nelson	*read_input(char *cmdline)
+t_nelson	*read_input(t_hell *hell, char *cmdline)
 {
 	t_nelson	*input;
 	t_nelson	*start;
@@ -99,17 +99,23 @@ t_nelson	*read_input(char *cmdline)
 	if (*cmdline != '|')
 		cmdline += get_len(cmdline);
 	else
+	{
 		cmdline++;
+		hell->cmd_nbr++;
+	}
 	while (*cmdline)
 	{
+		if (*cmdline != '|')
+			cmdline += get_len(cmdline);
+		else
+		{
+			cmdline++;
+			hell->cmd_nbr++;
+		}
 		input->next = get_node(cmdline);
 		if (ft_is_redirect(cmdline - 1) && *cmdline == *(cmdline - 1))
 			cmdline++;
 		input = input->next;
-		if (*cmdline != '|')
-			cmdline += get_len(cmdline);
-		else
-			cmdline++;
 	}
 	free(aux);
 	return (start);

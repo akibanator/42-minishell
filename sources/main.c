@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 00:12:58 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:24:29 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	main(int argc, char *argv[], char *envp[])
 			break ;
 		if (check_input(input))
 		{
-			run_line(hell, read_input(edit_input(input, 1, 0)));
+			run_line(hell, read_input(hell, edit_input(input, 1, 0)));
+			// ft_printf("input = [%s]\nnumber of commands = %d", read_input(hell, edit_input(input, 1, 0)), hell->cmd_nbr);
+			ft_printf("number of commands = %d\n", hell->cmd_nbr);
 			add_history(input);
 		}
 	}

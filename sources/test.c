@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 02:23:50 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:14:31 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[], char *envp[])
 	// input = edit_input(argv[1], 1, -1);
 	// ft_printf("noedit input = %s\n", argv[1]);
 	// ft_printf("edited input = %s\n", input);
-	// input_list = read_input(input);
+	// input_list = read_input(hell, input);
 	// j = 0;
 	// while (input_list)
 	// {
@@ -44,7 +44,7 @@ int	main(int argc, char *argv[], char *envp[])
 	test = expand_variables(test, hell);
 	ft_printf("test = [%s]\n", test);
 	free(test);
-	run_line(hell, read_input(edit_input(argv[1], 1, -1)));
+	run_line(hell, read_input(hell, edit_input(argv[1], 1, -1)));
 	// close(19);
 	// close(23);
 	free_env(hell->env);
