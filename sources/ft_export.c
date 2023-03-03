@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/14 13:37:09 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:16:28 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ static size_t	gen_strlen(char const *str, char delim)
 
 static int	find_env(char *name, char *value, t_env *env)
 {
-	size_t	len;
-
-	len = ft_strlen(name);
-	while (ft_strncmp(env->name, "-EOF", 4) != 0)
+	while (env)
 	{
-		if (ft_strncmp(env->name, name, len) == 0)
+		if (!ft_strcmp(env->name, name))
 		{
+			ft_printf("env->value: %s\n", env->value);
 			free(env->value);
 			env->value = ft_strdup(value);
 			return (1);
@@ -58,8 +56,10 @@ static void	create_env(char *name, char *value, t_env *env)
 	new_env = malloc(sizeof(t_env));
 	new_env->name = ft_strdup(name);
 	new_env->value = ft_strdup(value);
-	new_env->next = env->next;
+	while (env->next)
+		env = env->next;
 	env->next = new_env;
+	env->next->next = NULL;
 }
 
 void	ft_export(char *str, t_env *env)
@@ -69,6 +69,11 @@ void	ft_export(char *str, t_env *env)
 	char	*name;
 	size_t	len;
 
+	if (str == NULL)
+	{
+		export_no_args(env);
+		return ;
+	}
 	if (!is_valid_export(str))
 		return ;
 	pos_chr = ft_strchr(str, '=');
