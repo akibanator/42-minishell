@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 23:25:35 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:48:57 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	run_node(t_hell *hell, t_nelson *node)
 {
-	// ft_printf("cmd = %s\n", node->content[0]);
-	// if (node->content[1] != NULL)
-	// 	ft_printf("cmd1 = %s\n", node->content[1]);
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
 	if (ft_is_redirect(node->content[0]))
@@ -50,5 +47,6 @@ void	run_line(t_hell *hell, t_nelson *node)
 	while (++i <= hell->cmd_nbr)
 		waitpid(hell->pids[i], NULL, 0);
 	hell->cmd_nbr = 0;
+	close(hell->to_close);
 	// waitpid(hell->child, NULL, 0);
 }

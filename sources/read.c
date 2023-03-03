@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 22:58:46 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:08:55 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ static t_nelson	*get_node(char *s)
 	nelson = (t_nelson *)malloc(sizeof(t_nelson));
 	nelson->is_done = FALSE;
 	nelson->next = NULL;
-	if (*s == '|')
-		pipe(nelson->pipe);
 	while (*s == ' ')
 		s++;
 	nelson->content = get_content(s);
