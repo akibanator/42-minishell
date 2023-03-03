@@ -1,9 +1,7 @@
 [fazer um fork e chamar readline
 criar uma function e chamar um handler no processo filho] ??
 
-- criar array de pids e colocar wait
 - corrigir o parse para tratar os espacos
-- refazer exp_var
 - here_doc signal
 - pipe no comeco e final
 - linha sem comando valido, msg de erro
