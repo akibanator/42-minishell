@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 21:22:41 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/02 22:58:46 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,7 @@ static t_nelson	*get_node(char *s)
 	nelson->is_done = FALSE;
 	nelson->next = NULL;
 	if (*s == '|')
-	{
 		pipe(nelson->pipe);
-		dup2(nelson->pipe[1], STDOUT_FILENO);
-		close(nelson->pipe[1]);
-	}
 	while (*s == ' ')
 		s++;
 	nelson->content = get_content(s);
@@ -96,26 +92,24 @@ t_nelson	*read_input(t_hell *hell, char *cmdline)
 	aux = cmdline;
 	input = get_node(cmdline);
 	start = input;
+	if ((!ft_is_redirect(cmdline)) && (!ft_is_builtin(cmdline)))
+		hell->cmd_nbr++;
 	if (*cmdline != '|')
 		cmdline += get_len(cmdline);
 	else
-	{
 		cmdline++;
-		hell->cmd_nbr++;
-	}
 	while (*cmdline)
 	{
-		if (*cmdline != '|')
-			cmdline += get_len(cmdline);
-		else
-		{
-			cmdline++;
-			hell->cmd_nbr++;
-		}
 		input->next = get_node(cmdline);
 		if (ft_is_redirect(cmdline - 1) && *cmdline == *(cmdline - 1))
 			cmdline++;
 		input = input->next;
+		if (!ft_is_redirect(cmdline) && !ft_is_builtin(cmdline))
+			hell->cmd_nbr++;
+		if (*cmdline != '|')
+			cmdline += get_len(cmdline);
+		else
+			cmdline++;
 	}
 	free(aux);
 	return (start);

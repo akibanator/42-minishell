@@ -13,3 +13,10 @@ criar uma function e chamar um handler no processo filho
 - Tratar sinais
 WIFSIGNALED, Macro para passar o status code
 WIFEXITED, WIF para checar se foi um exit. Precisa usar outro macro para interpretar, WEXITSTATUS
+
+
+pipe1 stdin -> to_close1
+pipe2 to_close1 -> to_close2
+to_close2 > STDOUT
+
+cat | cat | ls

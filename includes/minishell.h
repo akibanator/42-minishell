@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 21:19:51 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:27:45 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_hell {
 	int				std_out;
 	int				exit_code;
 	int				cmd_nbr;
+	int				to_close;
 	pid_t			*pids;
 	pid_t			child;
 	char			*pwd;
@@ -65,7 +66,7 @@ t_hell		*setup_hell(char *envp[]);
 //checks
 int			have_var(char *str);
 int			ft_is_redirect(char *str);
-int			ft_is_builtin(char	**str);
+int			ft_is_builtin(char	*str);
 void		check_quotes(char *s);
 t_env		*check_pwd(t_env *head);
 
