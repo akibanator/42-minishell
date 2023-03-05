@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 01:08:55 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:50:20 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,36 @@ static t_nelson	*get_node(char *s)
 	nelson = (t_nelson *)malloc(sizeof(t_nelson));
 	nelson->is_done = FALSE;
 	nelson->next = NULL;
-	while (*s == ' ')
-		s++;
 	nelson->content = get_content(s);
 	return (nelson);
 }
+
+// t_nelson	*read_input(t_hell *hell, char **cmdline)
+// {
+// 	t_nelson	*input;
+// 	char		*aux;
+
+// 	aux = cmdline;
+// 	while(*aux)
+// 	{
+		
+// 	}
+		
+// }
+
+// t_nelson	*split_redirects(char **cmdline)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (*cmdline)
+// 	if (ft_is_redirect((*cmdline)[i])
+// 		{
+// 			if ((*cmdline)[i] == (*cmdline)[1])
+// 				i++;
+// 			if (*cmdline[i + 1])
+// 		}
+// }
 
 t_nelson	*read_input(t_hell *hell, char *cmdline)
 {

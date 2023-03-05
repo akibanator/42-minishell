@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 03:22:36 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 22:36:36 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:05:59 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_quotes(char *s)
 	}
 }
 
-int	ft_is_builtin(char	*str)
+int	ft_is_builtin(const char *str)
 {
 	while (*str == ' ')
 		str++;
@@ -57,7 +57,7 @@ int	ft_is_builtin(char	*str)
 	return (0);
 }
 
-int	ft_is_redirect(char *str)
+int	ft_is_redirect(const char *str)
 {
 	if (!(ft_strncmp(str, "<", 1)))
 		return (1);

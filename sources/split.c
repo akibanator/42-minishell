@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/01/31 21:13:06 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:02:07 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,26 @@ static size_t	gen_strlen(char const *str, char delim)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != delim && str[i])
+	while (str[i] && str[i] != delim)
 		i++;
-	return (i + 1);
+	return (i);
+}
+
+static size_t	get_redir_len(char const *str, char delim)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] && str[i] != delim && str[i] != '|'
+		&& str[i] != '<' && str[i] != '>')
+		i++;
+	return (i);
 }
 
 static size_t	ft_word_counter(char const *s, char c)
 {
 	size_t	words;
-	char	quote;
+	int		aux;
 
 	words = 0;
 	while (*s)
@@ -34,17 +45,21 @@ static size_t	ft_word_counter(char const *s, char c)
 			s++;
 		if (*s)
 		{
+			if (ft_is_redirect(s))
+				words++;
+			if (ft_is_redirect(s) && *(s + 1) != *s)
+				s += 2;
+			if (ft_is_redirect(s) && *(s + 1) && *(s + 1) == *s)
+				s += 2;
 			if (*s == '\'' || *s == '\"')
 			{
-				quote = *s;
-				s++;
-				while (*s && *s != quote)
-					s++;
-				if (*s != quote)
+				aux = gen_strlen(s + 1, *s);
+				if (*(s + aux + 1) != *s)
 					ft_printf("please close all quotes");
+				s += aux + 2;
 			}
 			words++;
-			while (*s && *s != c)
+			while (*s && *s != c && *s != '|' && *s != '>' && *s != '<')
 				s++;
 		}	
 	}
@@ -63,17 +78,16 @@ static char	**split_it(char **split, char const *s, char c, size_t words)
 	{
 		while (s[i] == c)
 			i++;
-		if (s[i] == '\'')
-			len = gen_strlen(&s[i + 1], '\'');
-		else if (s[i] == '\"')
-			len = gen_strlen(&s[i + 1], '\"');
-		else
-			len = gen_strlen(&s[i], c);
-		split[j] = (char *)malloc(sizeof(char) * len);
 		if (s[i] == '\'' || s[i] == '\"')
-			ft_strlcpy(split[j], &s[i], len);
+			len = gen_strlen(&s[i + 1], s[i]) + 2;
+		else if (ft_is_redirect(&s[i]))
+			len = 1;
 		else
-			ft_strlcpy(split[j], &s[i], len);
+			len = get_redir_len(&s[i], c);
+		if (ft_is_redirect(&s[i]) && s[i + 1] && s[i + 1] == s[i])
+			len++;
+		split[j] = (char *)malloc(sizeof(char) * (len + 1));
+		ft_strlcpy(split[j], &s[i], len + 1);
 		i += len;
 	}
 	return (split);
