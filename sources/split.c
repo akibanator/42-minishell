@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/05 20:02:07 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:09:11 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ static size_t	get_redir_len(char const *str, char delim)
 	return (i);
 }
 
-static size_t	ft_word_counter(char const *s, char c)
+static size_t	ft_word_counter(char const *s, char c, size_t words, int aux)
 {
-	size_t	words;
-	int		aux;
-
-	words = 0;
 	while (*s)
 	{
 		while (*s == c)
@@ -98,7 +94,7 @@ char	**mini_split(char const *s, char c)
 	size_t	words;
 	char	**split;
 
-	words = ft_word_counter(s, c);
+	words = ft_word_counter(s, c, 0, 0);
 	split = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!split)
 		return (NULL);
