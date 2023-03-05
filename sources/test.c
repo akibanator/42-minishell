@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:12:30 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 00:42:38 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:57:02 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	main(int argc, char *argv[], char *envp[])
 	char		*test;
 	char		*input;
 	t_nelson	*input_list;
-	int			i;
-	int			j;
 
 	if (argc == 1)
 		ft_printf("running %s\n", argv[0]);
@@ -30,19 +28,18 @@ int	main(int argc, char *argv[], char *envp[])
 	hell = setup_hell(envp);
 	hell->env = init_env(envp);
 	input_list = read_input(hell, input);
-	ft_printf("hi\n");
-	j = 0;
-	while (input_list)
-	{
-		i = -1;
-		while (input_list->content[++i])
-			ft_printf("content[%d][%d] = [%s]\n", j, i, input_list->content[i]);
-		input_list = input_list->next;
-		j++;
-	}
-	// test = ft_strdup("hi $OLDPWD $HOSTTYPE $USER");
+	// j = 0;
+	// while (input_list)
+	// {
+	// 	i = -1;
+	// 	while (input_list->content[++i])
+	// 		ft_printf("content[%d][%d] = [%s]\n", j, i, input_list->content[i]);
+	// 	input_list = input_list->next;
+	// 	j++;
+	// }
+	test = ft_strdup("hi $OLDPWD $HOSTTYPE $USER");
 	ft_printf("test = [%s]\n", test);
-	// test = expand_variables(test, hell);
+	test = expand_variables(test, hell);
 	ft_printf("test = [%s]\n", test);
 	free(test);
 	// run_line(hell, read_input(hell, edit_input(argv[1], 1, 0)));
