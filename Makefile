@@ -27,6 +27,7 @@ SOURCES_LIST	= check.c \
 				setup_signal.c \
 				handle_signal.c \
 				clear_fd.c \
+				check_pipes.c \
 				main.c \
 				# test.c \
 
