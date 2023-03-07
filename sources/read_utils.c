@@ -6,35 +6,11 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:08:37 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 01:52:43 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:55:19 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*get_str(char *s, char *delim)
-{
-	int		size;
-	int		i;
-	int		j;
-	char	*str;
-
-	size = 0;
-	i = -1;
-	j = 0;
-	while (s[size] && !(ft_strchr(delim, s[size])))
-		if (s[size] != '\'' && s[size] != '\"')
-			size++;
-	str = (char *)malloc((size + 1) * sizeof(char));
-	while (++i < size)
-	{
-		if (s[j] == '\'' || s[j] == '\"')
-			j++;
-		str[i] = s[j++];
-	}
-	str[i] = 0;
-	return (str);
-}
 
 static char	**get_pipe(void)
 {
@@ -46,53 +22,52 @@ static char	**get_pipe(void)
 	return (pipe);
 }
 
-static char	**get_cmd(char *s)
-{
-	char	*str;
-	char	**cmd;
-
-	while (*s == ' ')
-		s++;
-	str = get_str(s, "<|>");
-	cmd = mini_split(str, ' ');
-	free(str);
-	return (cmd);
-}
-
-static char	**get_redirect(char *s)
+static char	**get_redirect(char **s)
 {
 	char	**redir;
 
 	redir = (char **)malloc(3 * sizeof(char *));
-	if ((*(s + 1)) == *s)
-	{
-		redir[0] = (char *)malloc(3 * sizeof(char));
-		redir[0][0] = *s++;
-		redir[0][1] = *s++;
-		redir[0][2] = 0;
-	}
-	else
-	{
-		redir[0] = (char *)malloc(2 * sizeof(char));
-		redir[0][0] = *s++;
-		redir[0][1] = 0;
-	}
-	while (*s == ' ')
-		s++;
-	redir[1] = get_str(s, "<|> ");
+	redir[0] = ft_strdup(*(s++));
+	redir[1] = ft_strdup(*s);
 	redir[2] = NULL;
 	return (redir);
 }
 
-char	**get_content(char *s)
+static char	**get_cmd(char **s)
+{
+	int		i;
+	char	**cmd;
+
+	i = -1;
+	while (s[++i])
+		if (ft_is_redirect(s[i]))
+			break ;
+	cmd = (char **)ft_calloc(i + 1, sizeof(char *));
+	while (--i >= 0)
+		cmd[i] = ft_strdup(s[i]);
+	return (cmd);
+}
+
+static char	**get_content(char **s)
 {
 	char	**content;
 
-	if (*s == '|')
+	if (**s == '|')
 		content = get_pipe();
-	else if (ft_is_redirect(s))
+	else if (ft_is_redirect(*s))
 		content = get_redirect(s);
 	else
 		content = get_cmd(s);
 	return (content);
+}
+
+t_nelson	*get_node(char **s)
+{
+	t_nelson	*nelson;
+
+	nelson = (t_nelson *)malloc(sizeof(t_nelson));
+	nelson->is_done = FALSE;
+	nelson->next = NULL;
+	nelson->content = get_content(s);
+	return (nelson);
 }

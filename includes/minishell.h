@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/05 19:06:38 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:50:33 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,9 @@ void		ft_free_nelson(t_nelson *nelson);
 void		free_env(t_env *env);
 
 //read_input
-char		**get_content(char *s);
-char		*edit_input(char *input, int i, int j);
+t_nelson	*get_node(char **s);
 char		**mini_split(char const *s, char c);
-t_nelson	*read_input(t_hell *hell, char *cmdline);
+t_nelson	*read_input(char **cmdline);
 
 //builtins
 int			ft_cd(char *str, t_env *head);

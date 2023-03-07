@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/05 20:09:11 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:23:50 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static char	**split_it(char **split, char const *s, char c, size_t words)
 		ft_strlcpy(split[j], &s[i], len + 1);
 		i += len;
 	}
+	split[j] == NULL;
 	return (split);
 }
 
