@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 23:58:00 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/08 00:09:41 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	run_line(t_hell *hell, t_nelson *node)
 	i = -1;
 	// ft_printf("cmd_nbr = %d\n", hell->cmd_nbr);
 	if (hell->cmd_nbr > 0)
-		hell->pids = (pid_t *)ft_calloc(sizeof(pid_t), hell->cmd_nbr);
+		hell->pids = (pid_t *)ft_calloc(sizeof(pid_t), hell->cmd_nbr + 1);
 	aux = node;
 	while (node)
 	{
@@ -49,8 +49,8 @@ void	run_line(t_hell *hell, t_nelson *node)
 	if (hell->cmd_nbr > 0)
 		while (++i <= hell->cmd_nbr)
 			waitpid(hell->pids[i], NULL, 0);
-	// if (hell->cmd_nbr > 0)
-	// 	free(hell->pids);
+	if (hell->cmd_nbr > 0)
+		free (hell->pids);
 	if (hell->cmd_nbr > 1)
 		close(hell->to_close);
 	hell->cmd_nbr = 0;
