@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:08:37 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/06 22:55:19 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:37:16 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**get_cmd(char **s)
 	return (cmd);
 }
 
-static char	**get_content(char **s)
+static char	**get_content(char **s, t_hell *hell)
 {
 	char	**content;
 
@@ -57,17 +57,21 @@ static char	**get_content(char **s)
 	else if (ft_is_redirect(*s))
 		content = get_redirect(s);
 	else
+	{
 		content = get_cmd(s);
+		if (!ft_is_builtin(content[0]))
+			hell->cmd_nbr++;
+	}
 	return (content);
 }
 
-t_nelson	*get_node(char **s)
+t_nelson	*get_node(char **s, t_hell *hell)
 {
 	t_nelson	*nelson;
 
 	nelson = (t_nelson *)malloc(sizeof(t_nelson));
 	nelson->is_done = FALSE;
 	nelson->next = NULL;
-	nelson->content = get_content(s);
+	nelson->content = get_content(s, hell);
 	return (nelson);
 }

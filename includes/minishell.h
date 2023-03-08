@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:20:25 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:35:18 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void		ft_free_nelson(t_nelson *nelson);
 void		free_env(t_env *env);
 
 //read_input
-t_nelson	*get_node(char **s);
+t_nelson	*get_node(char **s, t_hell *hell);
 char		**mini_split(char const *s, char c);
-t_nelson	*read_input(char **cmdline);
+t_nelson	*read_input(char **cmdline, t_hell *hell);
 
 //builtins
 int			ft_cd(char *str, t_env *head);

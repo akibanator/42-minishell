@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:50:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/02/20 16:41:41 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:41:00 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ void	ft_echo(char **str)
 
 	flag_n = 0;
 	i = 1;
+	if (str[i] == NULL)
+	{
+		write(1, "\n", 1);
+		return ;
+	}
 	if ((ft_strcmp(str[i], "-n") == 0))
 	{
 		while ((ft_strcmp(str[i], "-n") == 0) && (str[i + 1] != NULL))

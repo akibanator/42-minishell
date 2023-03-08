@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:25:25 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:35:51 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char *argv[], char *envp[])
 			break ;
 		if (check_input(input))
 		{
-			run_line(hell, read_input(mini_split(input, ' ')));
+			run_line(hell, read_input(mini_split(input, ' '), hell));
 			add_history(input);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 03:22:36 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/05 19:05:59 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:29:24 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	check_quotes(char *s)
 
 int	ft_is_builtin(const char *str)
 {
-	while (*str == ' ')
-		str++;
 	if (!ft_strncmp(str, "echo", 4))
 		return (1);
 	else if (!ft_strncmp(str, "cd", 2))
