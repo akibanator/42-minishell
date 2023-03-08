@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 23:01:32 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 23:08:05 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 		}
 	}
 	free (node->content[0]);
-	cmd_error("command not found\n" , NULL, 1);
+	cmd_error("" , cmd, 127);
 	hell->exit_code = 127;
 	return (cmd);
 }
