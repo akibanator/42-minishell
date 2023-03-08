@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 23:20:07 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:25:25 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char *argv[], char *envp[])
 			break ;
 		if (check_input(input))
 		{
-			run_line(hell, read_input(hell, edit_input(input, 1, 0)));
+			run_line(hell, read_input(mini_split(input, ' ')));
 			add_history(input);
 		}
 	}
