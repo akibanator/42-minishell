@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:35:51 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:56:13 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_hell		*hell;
 	char		*input;
-	int i;
 
 	input = NULL;
 	if (argc != 1 || argv[0][0] == 0)
@@ -49,7 +48,6 @@ int	main(int argc, char *argv[], char *envp[])
 	hell->env = init_env(envp);
 	while (1)
 	{
-		i = -1;
 		update_pwd(hell);
 		sig_setup_prompt();
 		free(input);

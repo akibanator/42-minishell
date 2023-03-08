@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 00:49:04 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:57:53 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	set_fds(t_hell *hell, t_nelson *node)
 			return ;
 		}
 		if (ft_is_redirect(node->content[0]))
-			run_redirect(hell, node);
+			run_redirect(node);
 		node = node->next;
 	}
 }

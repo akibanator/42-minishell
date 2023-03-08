@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:41:52 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:57:46 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	run_node(t_hell *hell, t_nelson *node)
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
 	if (ft_is_redirect(node->content[0]))
-		run_redirect(hell, node);
+		run_redirect(node);
 	else
 	{
 		set_fds(hell, node);
@@ -48,5 +48,4 @@ void	run_line(t_hell *hell, t_nelson *node)
 		waitpid(hell->pids[i], NULL, 0);
 	hell->cmd_nbr = 0;
 	close(hell->to_close);
-	// waitpid(hell->child, NULL, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:35:18 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:57:40 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_nelson {
 
 //run
 void		run_pipe(t_hell *hell, t_nelson *node);
-void		run_redirect(t_hell *hell, t_nelson *node);
+void		run_redirect(t_nelson *node);
 void		run_cmd(t_hell *hell, t_nelson *node);
 void		run_builtin(t_hell *hell, t_nelson *node);
 void		run_node(t_hell *hell, t_nelson *node);

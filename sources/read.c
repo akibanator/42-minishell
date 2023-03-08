@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:31:50 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:45:33 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_nelson	*read_input(char **cmdline, t_hell *hell)
 	while (node->content[i])
 		i++;
 	aux += i;
-	while(*aux)
+	while (*aux)
 	{
 		node->next = get_node(aux, hell);
 		node = node->next;

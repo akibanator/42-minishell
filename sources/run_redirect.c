@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:57 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 01:08:59 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:57:21 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	run_pipe(t_hell *hell, t_nelson *node)
 	node->is_done++;
 }
 
-void	run_redirect(t_hell *hell, t_nelson *node)
+void	run_redirect(t_nelson *node)
 {
 	int	fd;
 
