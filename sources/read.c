@@ -6,109 +6,35 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 01:08:55 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:58:29 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*edit_input(char *input, int i, int j)
+t_nelson	*read_input(char **cmdline)
 {
-	char	*st;
-
-	while (input[++j])
-	{
-		if (input[j] != input[j - 1] && (input[j] == '<' || input[j] == '>'))
-			i++;
-		if (input[j] == '|')
-			i++;
-	}
-	st = (char *)ft_calloc((j + i), sizeof(char));
-	j = -1;
-	i = -1;
-	st[++i] = input[++j];
-	while (input[++j])
-	{
-		st[++i] = input[j];
-		if (ft_is_redirect(&st[i]) && (input[i + 1] == ' '))
-		{
-			j++;
-			st[j] = input[j + 1];
-		}
-	}
-	return (st);
-}
-
-static int	get_len(char *s)
-{
-	int		len;
-	char	*delim;
-
-	len = 0;
-	if (s[0] == '<' || s[0] == '>')
-	{
-		if (s[0] == s[1])
-			len = 1;
-		delim = ft_strdup("<|> ");
-		while (s[++len])
-			if (ft_strchr(delim, s[len]))
-				break ;
-	}
-	if (s[0] != '<' && s[0] != '>')
-	{
-		delim = ft_strdup("<|>");
-		while (s[len])
-		{
-			if (ft_strchr(delim, s[len]))
-				break ;
-			len++;
-		}
-	}
-	free(delim);
-	return (len);
-}
-
-static t_nelson	*get_node(char *s)
-{
-	t_nelson	*nelson;
-
-	nelson = (t_nelson *)malloc(sizeof(t_nelson));
-	nelson->is_done = FALSE;
-	nelson->next = NULL;
-	while (*s == ' ')
-		s++;
-	nelson->content = get_content(s);
-	return (nelson);
-}
-
-t_nelson	*read_input(t_hell *hell, char *cmdline)
-{
-	t_nelson	*input;
+	char		**aux;
+	int			i;
+	t_nelson	*node;
 	t_nelson	*start;
-	char		*aux;
 
+	i = 0;
 	aux = cmdline;
-	input = get_node(cmdline);
-	start = input;
-	if ((!ft_is_redirect(cmdline)) && (!ft_is_builtin(cmdline)))
-		hell->cmd_nbr++;
-	if (*cmdline != '|')
-		cmdline += get_len(cmdline);
-	else
-		cmdline++;
-	while (*cmdline)
+	node = get_node(aux);
+	start = node;
+	while (node->content[i])
+		i++;
+	aux += i;
+	while(*aux)
 	{
-		input->next = get_node(cmdline);
-		if (ft_is_redirect(cmdline - 1) && *cmdline == *(cmdline - 1))
-			cmdline++;
-		input = input->next;
-		if (!ft_is_redirect(cmdline) && !ft_is_builtin(cmdline))
-			hell->cmd_nbr++;
-		if (*cmdline != '|')
-			cmdline += get_len(cmdline);
-		else
-			cmdline++;
+		node->next = get_node(aux);
+		node = node->next;
+		i = 0;
+		while (node->content[i])
+			i++;
+		aux += i;
 	}
-	free(aux);
+	ft_free_array(cmdline, (void *)cmdline);
 	return (start);
 }

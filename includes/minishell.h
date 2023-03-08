@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 21:59:39 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:02:38 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ t_hell		*setup_hell(char *envp[]);
 
 //checks
 int			have_var(char *str);
-int			ft_is_redirect(char *str);
-int			ft_is_builtin(char	*str);
+int			ft_is_redirect(const char *str);
+int			ft_is_builtin(const char	*str);
 void		check_quotes(char *s);
 t_env		*check_pwd(t_env *head);
 
@@ -81,10 +81,9 @@ void		ft_free_nelson(t_nelson *nelson);
 void		free_env(t_env *env);
 
 //read_input
-char		**get_content(char *s);
-char		*edit_input(char *input, int i, int j);
+t_nelson	*get_node(char **s);
 char		**mini_split(char const *s, char c);
-t_nelson	*read_input(t_hell *hell, char *cmdline);
+t_nelson	*read_input(char **cmdline);
 
 //builtins
 int			ft_cd(char *str, t_env *head);
