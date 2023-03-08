@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:57 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 01:24:53 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:08:59 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	run_pipe(t_hell *hell, t_nelson *node)
 {
-	if (node->is_done == 2)
-		return ;
+	if (node->is_done == 0)
+	{
+		pipe(node->pipe);
+		dup2(node->pipe[1], STDOUT_FILENO);
+		close(node->pipe[1]);
+		hell->to_close = node->pipe[0];
+	}
 	if (node->is_done == 1)
 	{
 		dup2(node->pipe[0], STDIN_FILENO);

@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/15 00:51:37 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:49:04 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_hell	*setup_hell(char *envp[])
 	hell->path = get_path(envp);
 	hell->std_in = dup(STDIN_FILENO);
 	hell->std_out = dup(STDOUT_FILENO);
+	hell->to_close = STDIN_FILENO;
+	hell->cmd_nbr = 0;
 	hell->pwd = NULL;
 	hell->exit_code = 0;
 	return (hell);

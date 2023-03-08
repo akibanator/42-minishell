@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/01 23:32:33 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:08:55 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,13 @@ static t_nelson	*get_node(char *s)
 	nelson = (t_nelson *)malloc(sizeof(t_nelson));
 	nelson->is_done = FALSE;
 	nelson->next = NULL;
-	if (*s == '|')
-	{
-		pipe(nelson->pipe);
-		dup2(nelson->pipe[1], STDOUT_FILENO);
-		close(nelson->pipe[1]);
-	}
 	while (*s == ' ')
 		s++;
 	nelson->content = get_content(s);
 	return (nelson);
 }
 
-t_nelson	*read_input(char *cmdline)
+t_nelson	*read_input(t_hell *hell, char *cmdline)
 {
 	t_nelson	*input;
 	t_nelson	*start;
@@ -96,6 +90,8 @@ t_nelson	*read_input(char *cmdline)
 	aux = cmdline;
 	input = get_node(cmdline);
 	start = input;
+	if ((!ft_is_redirect(cmdline)) && (!ft_is_builtin(cmdline)))
+		hell->cmd_nbr++;
 	if (*cmdline != '|')
 		cmdline += get_len(cmdline);
 	else
@@ -106,6 +102,8 @@ t_nelson	*read_input(char *cmdline)
 		if (ft_is_redirect(cmdline - 1) && *cmdline == *(cmdline - 1))
 			cmdline++;
 		input = input->next;
+		if (!ft_is_redirect(cmdline) && !ft_is_builtin(cmdline))
+			hell->cmd_nbr++;
 		if (*cmdline != '|')
 			cmdline += get_len(cmdline);
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:39:05 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/01 22:40:29 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:03:43 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	clear_fd(void)
 {
 	int	fd;
 
-	fd = open("tempfile", O_RDONLY | O_CREAT);
+	fd = 100;
 	if (fd < 0)
 		return ;
 	while (fd > STDERR_FILENO)

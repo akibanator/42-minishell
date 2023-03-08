@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/02 00:12:58 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:20:07 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_hell		*hell;
 	char		*input;
+	int i;
 
 	input = NULL;
 	if (argc != 1 || argv[0][0] == 0)
@@ -48,17 +49,16 @@ int	main(int argc, char *argv[], char *envp[])
 	hell->env = init_env(envp);
 	while (1)
 	{
+		i = -1;
 		update_pwd(hell);
 		sig_setup_prompt();
 		free(input);
-		// dup2(hell->std_in, STDIN_FILENO);
-		// dup2(hell->std_out, STDOUT_FILENO);
 		input = readline(hell->pwd);
 		if (input == NULL)
 			break ;
 		if (check_input(input))
 		{
-			run_line(hell, read_input(edit_input(input, 1, 0)));
+			run_line(hell, read_input(hell, edit_input(input, 1, 0)));
 			add_history(input);
 		}
 	}

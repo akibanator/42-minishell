@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 00:00:20 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:00:00 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,18 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 
 void	run_cmd(t_hell *hell, t_nelson *node)
 {
+	int	i;
+
+	i = 0;
 	node->content[0] = get_cmd(hell, node);
-	hell->child = fork();
-	sig_setup_exec(hell->child);
-	if (hell->child == 0)
+	while (hell->pids[i] != 0)
+		i++;
+	hell->pids[i] = fork();
+	sig_setup_exec(hell->pids[i]);
+	if (hell->pids[i] == 0)
 	{
+		close(hell->to_close);
+		clear_fd();
 		execve(node->content[0], node->content, 0);
 		exit(1);
 	}

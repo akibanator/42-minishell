@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/03 00:18:35 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:59:39 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct s_hell {
 	int				std_in;
 	int				std_out;
 	int				exit_code;
+	int				cmd_nbr;
+	int				to_close;
+	pid_t			*pids;
 	pid_t			child;
 	char			*pwd;
 	char			**path;
@@ -63,7 +66,7 @@ t_hell		*setup_hell(char *envp[]);
 //checks
 int			have_var(char *str);
 int			ft_is_redirect(char *str);
-int			ft_is_builtin(char	**str);
+int			ft_is_builtin(char	*str);
 void		check_quotes(char *s);
 t_env		*check_pwd(t_env *head);
 
@@ -81,7 +84,7 @@ void		free_env(t_env *env);
 char		**get_content(char *s);
 char		*edit_input(char *input, int i, int j);
 char		**mini_split(char const *s, char c);
-t_nelson	*read_input(char *cmdline);
+t_nelson	*read_input(t_hell *hell, char *cmdline);
 
 //builtins
 int			ft_cd(char *str, t_env *head);
