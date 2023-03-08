@@ -14,3 +14,7 @@ new parse logic
 ->split by spaces (ignoring/priority to closed quotes)
 ->merge nodes that should be the same
 ->split commands and redirects into char **
+
+first:
+
+second:

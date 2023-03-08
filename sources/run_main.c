@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:57:46 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 23:58:00 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	run_line(t_hell *hell, t_nelson *node)
 	int			i;
 
 	i = -1;
-	hell->pids = (pid_t *)ft_calloc(sizeof(pid_t), hell->cmd_nbr);
+	// ft_printf("cmd_nbr = %d\n", hell->cmd_nbr);
+	if (hell->cmd_nbr > 0)
+		hell->pids = (pid_t *)ft_calloc(sizeof(pid_t), hell->cmd_nbr);
 	aux = node;
 	while (node)
 	{
@@ -44,8 +46,12 @@ void	run_line(t_hell *hell, t_nelson *node)
 	ft_free_nelson(aux);
 	dup2(hell->std_in, STDIN_FILENO);
 	dup2(hell->std_out, STDOUT_FILENO);
-	while (++i <= hell->cmd_nbr)
-		waitpid(hell->pids[i], NULL, 0);
+	if (hell->cmd_nbr > 0)
+		while (++i <= hell->cmd_nbr)
+			waitpid(hell->pids[i], NULL, 0);
+	// if (hell->cmd_nbr > 0)
+	// 	free(hell->pids);
+	if (hell->cmd_nbr > 1)
+		close(hell->to_close);
 	hell->cmd_nbr = 0;
-	close(hell->to_close);
 }

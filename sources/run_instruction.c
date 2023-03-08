@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 23:08:05 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/07 23:59:44 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 	node->content[0] = get_cmd(hell, node);
 	while (hell->pids[i] != 0)
 		i++;
-	hell->pids[i] = fork();
+	*(hell->pids + i) = fork();
 	sig_setup_exec(hell->pids[i]);
 	if (hell->pids[i] == 0)
 	{
