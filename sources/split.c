@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:58:18 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:32:46 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static size_t	ft_word_counter(char const *s, char c, size_t words, int aux)
 			if (ft_is_redirect(s) && *(s + 1) != *s)
 				s += 2;
 			if (ft_is_redirect(s) && *(s + 1) && *(s + 1) == *s)
-				s += 2;
+				s += 3;
 			if (*s == '\'' || *s == '\"')
 			{
 				aux = gen_strlen(s + 1, *s);

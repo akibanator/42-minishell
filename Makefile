@@ -26,6 +26,7 @@ SOURCES_LIST	= check.c \
 				ft_exit.c \
 				setup_signal.c \
 				handle_signal.c \
+				here_doc.c \
 				clear_fd.c \
 				main.c \
 				# test.c \

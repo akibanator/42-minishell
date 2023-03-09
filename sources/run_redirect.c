@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:57 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:57:21 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:24:32 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	run_redirect(t_nelson *node)
 		if ((node->content[0][0]) != node->content[0][1])
 			fd = open(node->content[1], O_RDONLY);
 		else
-			ft_printf("here_doc");
+			fd = here_doc(node->content[1]);
 		dup2(fd, STDIN_FILENO);
 	}
 	if (node->content[0][0] == '>')
