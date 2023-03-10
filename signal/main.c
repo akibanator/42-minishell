@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:47:45 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/10 15:39:54 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:45:45 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int	main(void)
 	}
 	free(str);
 	ft_printf("doc: %s\n", doc);
-	ft_printf("TODO return default signal\n");
+	ft_printf("return default signal\n");
+	sig_setup_default();
 	free(doc);
 	return (0);
 }

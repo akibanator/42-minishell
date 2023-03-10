@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 01:09:47 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/10 15:27:45 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:46:06 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int			call_poncho(unsigned long long int nb);
 int			call_professor(unsigned int nb, char c);
 int			telefonist(va_list contacts, char who_to_call);
 
-void	sig_setup_prompt(void);
+void		sig_setup_prompt(void);
+void		sig_setup_default(void);
 
 #endif
