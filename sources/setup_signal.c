@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_signal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 22:39:12 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/08 16:24:59 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:12:59 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,14 @@ void	sig_setup_exec(pid_t id)
 		sig.sa_handler = SIG_IGN;
 	sigaction(SIGINT, &sig, NULL);
 	sigaction(SIGQUIT, &sig, NULL);
+}
+
+void	sig_setup_heredoc(void)
+{
+	struct sigaction	sig_int;
+
+	sigemptyset(&sig_int.sa_mask);
+	sig_int.sa_flags = 0;
+	sig_int.sa_handler = sig_int_handle_heredoc;
+	sigaction(SIGINT, &sig_int, NULL);
 }
