@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 02:07:47 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:27:49 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_nelson	*read_input(char **cmdline, t_hell *hell);
 int			ft_cd(char *str, t_env *head);
 void		ft_pwd(t_env *head);
 void		ft_env(t_env *env);
-void		ft_exit(void);
+void		ft_exit(int exit_code);
 void		ft_echo(char **str);
 void		ft_export(char *str, t_env *env);
 void		export_no_args(t_env *head);

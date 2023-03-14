@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 05:55:46 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/02 00:12:54 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:27:38 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(void)
+void	ft_exit(int exit_code)
 {
 	clear_fd();
-	exit(0);
+	exit(exit_code);
 }

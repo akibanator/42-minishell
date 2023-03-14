@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 01:33:36 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:35:58 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	run_builtin(t_hell *hell, t_nelson *node)
 	else if (!ft_strncmp(node->content[0], "unset", 5))
 		hell->env = ft_unset(node->content[1], hell->env);
 	else if (!ft_strncmp(node->content[0], "exit", 4))
-		ft_exit();
+		ft_exit(0);
 }
