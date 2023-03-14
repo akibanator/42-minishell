@@ -4,30 +4,30 @@ HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./sources/
 
 HEADERS_LIST	= minishell.h
-SOURCES_LIST	= check.c \
-				error.c \
-				exp_var.c \
-				free.c \
-				ft_cd.c \
-				ft_echo.c \
-				ft_env.c \
-				ft_export.c \
-				ft_pwd.c \
-				ft_unset.c \
-				get.c \
-				read_utils.c \
-				read.c \
-				run_instruction.c \
-				run_main.c \
-				run_redirect.c \
-				setup.c \
-				split.c \
-				start_env.c \
-				ft_exit.c \
-				setup_signal.c \
-				handle_signal.c \
-				here_doc.c \
-				clear_fd.c \
+SOURCES_LIST	= builtin/ft_cd.c \
+				builtin/ft_echo.c \
+				builtin/ft_env.c \
+				builtin/ft_export.c \
+				builtin/ft_pwd.c \
+				builtin/ft_unset.c \
+				builtin/ft_exit.c \
+				signal/setup_signal.c \
+				signal/handle_signal.c \
+				memory/free.c \
+				memory/clear_fd.c \
+				setup/start_env.c \
+				setup/exp_var.c \
+				setup/setup.c \
+				setup/split.c \
+				run/run_instruction.c \
+				run/run_main.c \
+				run/run_redirect.c \
+				run/here_doc.c \
+				parse/check.c \
+				parse/read.c \
+				error/error.c \
+				util/get.c \
+				util/read_utils.c \
 				main.c \
 				# test.c \
 
@@ -36,6 +36,14 @@ SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
 INCLUDES		= -I ${HEADERS_DIR} -I ${LIBFT_HEADERS}
 
 OBJECTS_DIR		= ./objects/
+OBJECTS_SUBDIR	= ${OBJECTS_DIR}builtin/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}memory/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}parse/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}run/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}signal/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}setup/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}error/
+OBJECTS_SUBDIR	+= ${OBJECTS_DIR}util/
 OBJECTS_LIST	= ${patsubst %.c, %.o, ${SOURCES_LIST}}
 OBJECTS			= ${addprefix ${OBJECTS_DIR}, ${OBJECTS_LIST}}
 
@@ -58,6 +66,7 @@ ${NAME}:		${LIBFT} ${OBJECTS_DIR} ${OBJECTS}
 
 ${OBJECTS_DIR}:
 			mkdir -p ${OBJECTS_DIR}
+			mkdir -p ${OBJECTS_SUBDIR}
 			@echo objects folder has been created!
 ${OBJECTS_DIR}%.o : ${SOURCES_DIR}%.c ${HEADERS}
 			${CC} ${CFLAGS} -c ${INCLUDES} $< -o $@
