@@ -11,23 +11,23 @@ SOURCES_LIST	= builtin/ft_cd.c \
 				builtin/ft_pwd.c \
 				builtin/ft_unset.c \
 				builtin/ft_exit.c \
-				signal/setup_signal.c \
-				signal/handle_signal.c \
+				error/error.c \
 				memory/free.c \
 				memory/clear_fd.c \
-				setup/start_env.c \
-				setup/exp_var.c \
-				setup/setup.c \
-				setup/split.c \
+				parse/check.c \
+				parse/read.c \
+				parse/read_utils.c \
 				run/run_instruction.c \
 				run/run_main.c \
 				run/run_redirect.c \
 				run/here_doc.c \
-				parse/check.c \
-				parse/read.c \
-				error/error.c \
+				setup/start_env.c \
+				setup/exp_var.c \
+				setup/setup.c \
+				setup/split.c \
+				signal/setup_signal.c \
+				signal/handle_signal.c \
 				util/get.c \
-				util/read_utils.c \
 				main.c \
 				# test.c \
 

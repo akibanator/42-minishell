@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 00:36:06 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:03:51 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_hell	*setup_hell(char *envp[])
 
 	hell = (t_hell *)malloc(sizeof(t_hell));
 	hell->path = get_path(envp);
+	hell->env = init_env(envp);
 	hell->std_in = dup(STDIN_FILENO);
 	hell->std_out = dup(STDOUT_FILENO);
 	hell->std_err = dup(STDERR_FILENO);
@@ -25,6 +26,7 @@ t_hell	*setup_hell(char *envp[])
 	hell->cmd_nbr = 0;
 	hell->pwd = NULL;
 	hell->exit_code = 0;
+	ft_export("?=0", hell->env);
 	return (hell);
 }
 

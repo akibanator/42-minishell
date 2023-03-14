@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:12:42 by rarobert          #+#    #+#             */
-/*   Updated: 2023/02/14 10:13:09 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 01:57:09 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_value(char *key, t_env *head)
 {
 	while (head)
 	{
-		if (!ft_strncmp(key, head->name, ft_strlen(key)))
+		if (!ft_strncmp(key, head->name, ft_strlen(key) + 1))
 			return (head->value);
 		head = head->next;
 	}
@@ -26,12 +26,17 @@ char	*get_value(char *key, t_env *head)
 char	*expand_variables(char *str, t_hell *hell)
 {
 	char	**line;
+	char	*temp;
 
 	if (!(have_var(str)))
 		return (str);
 	line = split_var(str);
-	free(str);
-	line[2] = expand_variables(line[2], hell);
+	if (ft_strchr(line[2], '$'))
+	{
+		temp = line[2];
+		line[2] = expand_variables(temp, hell);
+		free(temp);
+	}
 	str = ft_strdup(line[0]);
 	str = ft_strjoin_free(str, get_value(line[1] + 1, hell->env));
 	str = ft_strjoin_free(str, line[2]);

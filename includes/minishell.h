@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 00:35:50 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:07:47 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		free_env(t_env *env);
 //read_input
 int			here_doc(char *limiter, t_hell *hell);
 t_nelson	*get_node(char **s, t_hell *hell);
-char		**mini_split(char const *s, char c);
+char		**mini_split(char *s, char c);
 t_nelson	*read_input(char **cmdline, t_hell *hell);
 
 //builtins
@@ -104,6 +104,7 @@ void 		sig_setup_exec(pid_t id);
 void		sig_setup_prompt(void);
 
 void		clear_fd(void);
+void		update_exit_code(t_hell *hell);
 
 void		sig_setup_heredoc(void);
 void		sig_int_handle_heredoc(int signal);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:19:17 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/03 00:16:28 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:10:48 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	find_env(char *name, char *value, t_env *env)
 	{
 		if (!ft_strcmp(env->name, name))
 		{
-			ft_printf("env->value: %s\n", env->value);
 			free(env->value);
 			env->value = ft_strdup(value);
 			return (1);

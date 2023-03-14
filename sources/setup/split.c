@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/08 16:32:46 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 01:50:30 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	**split_it(char **split, char const *s, char c, size_t words)
 	return (split);
 }
 
-char	**mini_split(char const *s, char c)
+char	**mini_split(char *s, char c)
 {
 	size_t	words;
 	char	**split;
@@ -106,5 +106,6 @@ char	**mini_split(char const *s, char c)
 		return (NULL);
 	}
 	split[words] = NULL;
+	free(s);
 	return (split);
 }

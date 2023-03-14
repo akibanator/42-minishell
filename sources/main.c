@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:56:13 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:05:35 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char *argv[], char *envp[])
 		exit(1);
 	}
 	hell = setup_hell(envp);
-	hell->env = init_env(envp);
 	while (1)
 	{
 		update_pwd(hell);
@@ -56,15 +55,17 @@ int	main(int argc, char *argv[], char *envp[])
 			break ;
 		if (check_input(input))
 		{
-			run_line(hell, read_input(mini_split(input, ' '), hell));
+			run_line(hell, read_input(mini_split(expand_variables(input, hell), ' '), hell));
 			add_history(input);
 		}
+		update_exit_code(hell);
 	}
 	rl_clear_history();
 	free(hell->pwd);
 	free_env(hell->env);
 	close(hell->std_in);
 	close(hell->std_out);
+	close(hell->std_err);
 	ft_free_array(hell->path, (void *)hell->path);
 	free(hell);
 	return (0);
