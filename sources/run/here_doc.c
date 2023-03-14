@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 00:42:41 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 04:17:17 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,34 @@ static char	*read_here_doc(char *limiter, char **here)
 		*here = get_next_line(STDIN_FILENO);
 	}
 	return (doc);
+}
+
+static void	free_c(t_hell *hell)
+{
+	//ft_free_nelson(hell->nelson);
+	t_nelson	*aux;
+
+	aux = hell->nelson;
+	while (hell->nelson->next)
+	{
+		hell->nelson = hell->nelson->next;
+		ft_free_array(hell->nelson->content, (void *)hell->nelson->content);
+	}
+	hell->nelson = aux;
+	hell->nelson->next = NULL;
+}
+
+static void	free_d(t_hell *hell)
+{
+	char	*str;
+	char	*line;
+
+	str = ft_strdup("warning: here-document at line ");
+	line = ft_itoa(hell->lines);
+	str = ft_strjoin_free(str, line);
+	cmd_error("", str, 1);
+	free(str);
+	free(line);
 }
 
 int	here_doc(char *limiter, t_hell *hell)
@@ -54,9 +82,9 @@ int	here_doc(char *limiter, t_hell *hell)
 		return (fd);
 	}
 	else if (temp == 2)
-		ft_printf("control C");
+		free_c(hell);
 	else
-		ft_printf("control D");
+		free_d(hell);
 	write(2, "\n", 1);
 	return (fd);
 }

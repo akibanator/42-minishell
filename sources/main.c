@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 02:28:58 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:33:22 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	check_input(char *input)
-{
-	while (*input != '\0')
-	{
-		if (*input != ' ')
-			return (1);
-		input++;
-	}
-	return (0);
-}
 
 static void	update_pwd(t_hell *hell)
 {
@@ -39,11 +28,7 @@ int	main(int argc, char *argv[], char *envp[])
 	char		*input;
 
 	input = NULL;
-	if (argc != 1 || argv[0][0] == 0)
-	{
-		ft_printf("invalid argument");
-		exit(1);
-	}
+	check_args(argc, argv);
 	hell = setup_hell(envp);
 	while (1)
 	{
@@ -52,21 +37,15 @@ int	main(int argc, char *argv[], char *envp[])
 		free(input);
 		input = readline(hell->pwd);
 		if (input == NULL)
-			break ;
-		if (check_input(input))
 		{
-			run_line(hell, read_input(mini_split(expand_variables(input, hell), ' '), hell));
-			add_history(input);
+			ft_printf("exit\n");
+			break ;
 		}
+		if (check_input(&input, hell))
+			run_line(hell, read_input(mini_split(input, ' '), hell));
+		hell->lines++;
 		update_exit_code(hell);
 	}
-	rl_clear_history();
-	free(hell->pwd);
-	free_env(hell->env);
-	close(hell->std_in);
-	close(hell->std_out);
-	close(hell->std_err);
-	ft_free_array(hell->path, (void *)hell->path);
-	free(hell);
+	ft_clear_all(hell);
 	return (0);
 }

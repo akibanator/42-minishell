@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 02:03:51 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:33:07 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_hell	*setup_hell(char *envp[])
 	hell->std_err = dup(STDERR_FILENO);
 	hell->to_close = -1;
 	hell->cmd_nbr = 0;
+	hell->lines = 0;
 	hell->pwd = NULL;
 	hell->exit_code = 0;
 	ft_export("?=0", hell->env);

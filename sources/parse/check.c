@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 03:22:36 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:29:24 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:28:03 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,37 @@ int	ft_is_redirect(const char *str)
 	if (!ft_strncmp(str, "|", 1))
 		return (1);
 	return (0);
+}
+
+void	check_args(int argc, char *argv[])
+{
+	(void) argv;
+	if (argc != 1)
+	{
+		ft_printf("Invalid argument\n");
+		ft_printf("usage: ./minishell\n");
+		exit(1);
+	}
+}
+
+int	check_input(char **input, t_hell *hell)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	str = *input;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	if (**input != ' ')
+		add_history(*input);
+	if (ft_strchr(*input, '$'))
+	{
+		str = expand_variables(*input, hell);
+		free(*input);
+		*input = str;
+	}
+	return (1);
 }

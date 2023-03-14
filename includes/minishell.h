@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 02:27:49 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:32:47 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_hell {
 	int				exit_code;
 	int				cmd_nbr;
 	int				to_close;
+	int				lines;
 	pid_t			*pids;
 	char			*pwd;
 	char			**path;
@@ -100,14 +101,18 @@ t_env		*ft_unset(char *str, t_env *env);
 void		cmd_error(char *print, char *error, int flag);
 
 void		sig_int_handle(int signal);
-void 		sig_setup_exec(pid_t id);
+void		sig_setup_exec(pid_t id);
 void		sig_setup_prompt(void);
 
 void		clear_fd(void);
+void		ft_clear_all(t_hell *hell);
 void		update_exit_code(t_hell *hell);
 
 void		sig_setup_heredoc(void);
 void		sig_int_handle_heredoc(int signal);
 void		sig_quit_handle_heredoc(int signal);
+
+void		check_args(int argc, char *argv[]);
+int			check_input(char **input, t_hell *hell);
 
 #endif

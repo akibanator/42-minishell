@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 00:12:26 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 04:06:39 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	run_line(t_hell *hell, t_nelson *node)
 		run_node(hell, node);
 		node = node->next;
 	}
-	ft_free_nelson(aux);
+	if (hell->nelson != NULL)
+		ft_free_nelson(aux);
 	dup2(hell->std_in, STDIN_FILENO);
 	dup2(hell->std_out, STDOUT_FILENO);
 	if (hell->cmd_nbr > 0)

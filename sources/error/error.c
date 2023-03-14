@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:11:17 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 23:08:43 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:46:39 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@ void	cmd_error(char *print, char *error, int flag)
 	{
 		write(2, error, ft_strlen(error));
 		write(2, ": command not found\n", 21);
+	}
+	if (flag == 1)
+	{
+		write(2, error, ft_strlen(error));
+		write(2, " delimited by end-of-file (wanted `eof')\n", 41);
 	}
 }
