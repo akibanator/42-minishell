@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/08 17:12:49 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:42:41 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#include "minishell.h"
-
-static char *read_here_doc(char *limiter, char **here)
+static char	*read_here_doc(char *limiter, char **here)
 {
 	char	*doc;
 
 	doc = ft_strdup("");
+	sig_setup_heredoc();
 	*here = get_next_line(STDIN_FILENO);
 	while (*here && ft_strncmp(limiter, *here, ft_strlen(limiter)))
 	{
@@ -30,7 +29,7 @@ static char *read_here_doc(char *limiter, char **here)
 	return (doc);
 }
 
-int	here_doc(char *limiter)
+int	here_doc(char *limiter, t_hell *hell)
 {
 	char	*here;
 	char	*doc;
@@ -41,19 +40,23 @@ int	here_doc(char *limiter)
 	doc = read_here_doc(limiter, &here);
 	fd = open("temp_file", O_CREAT | O_WRONLY, 0644);
 	temp = open("fd_checker", O_CREAT | O_WRONLY, 0644);
-	if (!ft_strncmp(limiter, here, ft_strlen(limiter)))
-	{
-		write(fd, doc, ft_strlen(doc));
-		free(here);
-		close (fd);
-		fd = open("temp_file", O_RDONLY);
-	}
-	else if (temp == 1)
-		ft_printf("control D");
-	else if (temp != 0)
-		ft_printf("control C");
+	write(fd, doc, ft_strlen(doc));
+	free(doc);
+	fd = open("temp_file", O_RDONLY);
+	dup2(hell->std_in, STDIN_FILENO);
+	dup2(hell->std_err, STDERR_FILENO);
 	unlink ("temp_file");
 	unlink ("fd_checker");
-	// free(doc);
+	sig_setup_prompt();
+	if (here && !ft_strncmp(limiter, here, ft_strlen(limiter)))
+	{
+		free(here);
+		return (fd);
+	}
+	else if (temp == 2)
+		ft_printf("control C");
+	else
+		ft_printf("control D");
+	write(2, "\n", 1);
 	return (fd);
 }

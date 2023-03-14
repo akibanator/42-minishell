@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:57 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/08 16:24:32 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:11:48 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	run_pipe(t_hell *hell, t_nelson *node)
 	node->is_done++;
 }
 
-void	run_redirect(t_nelson *node)
+void	run_redirect(t_nelson *node, t_hell *hell)
 {
 	int	fd;
 
@@ -41,7 +41,7 @@ void	run_redirect(t_nelson *node)
 		if ((node->content[0][0]) != node->content[0][1])
 			fd = open(node->content[1], O_RDONLY);
 		else
-			fd = here_doc(node->content[1]);
+			fd = here_doc(node->content[1], hell);
 		dup2(fd, STDIN_FILENO);
 	}
 	if (node->content[0][0] == '>')

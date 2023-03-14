@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/09 15:25:25 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:12:26 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	run_node(t_hell *hell, t_nelson *node)
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
 	if (ft_is_redirect(node->content[0]))
-		run_redirect(node);
+		run_redirect(node, hell);
 	else
 	{
 		set_fds(hell, node);

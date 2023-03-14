@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/08 16:25:27 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:35:50 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct s_hell {
 	int				std_in;
 	int				std_out;
+	int				std_err;
 	int				exit_code;
 	int				cmd_nbr;
 	int				to_close;
@@ -50,7 +51,7 @@ typedef struct s_nelson {
 
 //run
 void		run_pipe(t_hell *hell, t_nelson *node);
-void		run_redirect(t_nelson *node);
+void		run_redirect(t_nelson *node, t_hell *hell);
 void		run_cmd(t_hell *hell, t_nelson *node);
 void		run_builtin(t_hell *hell, t_nelson *node);
 void		run_node(t_hell *hell, t_nelson *node);
@@ -80,7 +81,7 @@ void		ft_free_nelson(t_nelson *nelson);
 void		free_env(t_env *env);
 
 //read_input
-int			here_doc(char *limiter);
+int			here_doc(char *limiter, t_hell *hell);
 t_nelson	*get_node(char **s, t_hell *hell);
 char		**mini_split(char const *s, char c);
 t_nelson	*read_input(char **cmdline, t_hell *hell);
@@ -103,5 +104,9 @@ void 		sig_setup_exec(pid_t id);
 void		sig_setup_prompt(void);
 
 void		clear_fd(void);
+
+void		sig_setup_heredoc(void);
+void		sig_int_handle_heredoc(int signal);
+void		sig_quit_handle_heredoc(int signal);
 
 #endif
