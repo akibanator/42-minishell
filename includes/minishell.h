@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:32:47 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:46:08 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_hell {
 	int				std_out;
 	int				std_err;
 	int				exit_code;
+	int				here_code;
 	int				cmd_nbr;
 	int				to_close;
 	int				lines;

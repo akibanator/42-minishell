@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 21:50:41 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:46:34 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	run_line(t_hell *hell, t_nelson *node)
 	{
 		run_node(hell, node);
 		node = node->next;
+		if (hell->here_code == 1)
+			break ;
 	}
 	ft_free_nelson(aux);
 	dup2(hell->std_in, STDIN_FILENO);

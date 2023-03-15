@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:33:07 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:45:16 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_hell	*setup_hell(char *envp[])
 	hell->lines = 0;
 	hell->pwd = NULL;
 	hell->exit_code = 0;
+	hell->here_code = 0;
 	ft_export("?=0", hell->env);
 	return (hell);
 }

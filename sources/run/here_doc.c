@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 21:10:13 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:48:04 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static char	*read_here_doc(char *limiter, char **here)
 
 static void	free_c(t_hell *hell)
 {
-
+	hell->here_code = 1;
+	ft_printf("\n");
 }
 
 static void	free_d(t_hell *hell)
