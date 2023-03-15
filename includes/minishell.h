@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 22:46:08 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:21:31 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ typedef struct s_nelson {
 //run
 void		run_pipe(t_hell *hell, t_nelson *node);
 void		run_redirect(t_nelson *node, t_hell *hell);
-void		run_cmd(t_hell *hell, t_nelson *node);
+void		run_cmd(t_hell *hell, t_nelson *node, char *envp[]);
 void		run_builtin(t_hell *hell, t_nelson *node);
-void		run_node(t_hell *hell, t_nelson *node);
-void		run_line(t_hell *hell, t_nelson *node);
+void		run_node(t_hell *hell, t_nelson *node, char *envp[]);
+void		run_line(t_hell *hell, t_nelson *node, char *envp[]);
 
 //setup
 void		set_fds(t_hell *hell, t_nelson *node);
-char		**get_path(char *envp[]);
+char		**get_path(t_env *env);
 t_env		*init_env(char *envp[]);
 t_hell		*setup_hell(char *envp[]);
 

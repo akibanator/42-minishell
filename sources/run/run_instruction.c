@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 21:54:07 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:44:18 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 
 	if (node->content[0][0] == '.' && node->content[0][0] == '/')
 		return (node->content[0]);
-	j = 0;
+	j = -1;
 	cmd = ft_strdup(node->content[0]);
 	while (hell->path[++j])
 	{
@@ -39,7 +39,7 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 	return (cmd);
 }
 
-void	run_cmd(t_hell *hell, t_nelson *node)
+void	run_cmd(t_hell *hell, t_nelson *node, char *envp[])
 {
 	int	i;
 
@@ -53,7 +53,7 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 	{
 		close(hell->to_close);
 		clear_fd();
-		execve(node->content[0], node->content, 0);
+		execve(node->content[0], node->content, envp);
 		ft_free_nelson(node);
 		if (hell->cmd_nbr > 0)
 			free (hell->pids);

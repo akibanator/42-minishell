@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:05:56 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 22:45:16 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:13:08 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_hell	*setup_hell(char *envp[])
 	t_hell	*hell;
 
 	hell = (t_hell *)malloc(sizeof(t_hell));
-	hell->path = get_path(envp);
 	hell->env = init_env(envp);
+	hell->path = get_path(hell->env);
 	hell->std_in = dup(STDIN_FILENO);
 	hell->std_out = dup(STDOUT_FILENO);
 	hell->std_err = dup(STDERR_FILENO);
@@ -34,13 +34,18 @@ t_hell	*setup_hell(char *envp[])
 
 void	set_fds(t_hell *hell, t_nelson *node)
 {
+	t_nelson	*aux;
+
+	aux = node;
+	while (node && node->content[0][0] != '|')
+		node = node->next;
+	if (node != NULL)
+		run_pipe(hell, node);
+	node = aux;
 	while (node)
 	{
 		if (node->content[0][0] == '|')
-		{
-			run_pipe(hell, node);
 			return ;
-		}
 		if (ft_is_redirect(node->content[0]))
 			run_redirect(node, hell);
 		node = node->next;

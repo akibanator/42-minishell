@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:08 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 02:12:59 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:44:07 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,21 @@ void	update_exit_code(t_hell *hell)
 	free(code);
 }
 
-char	**get_path(char *envp[])
+char	**get_path(t_env *env)
 {
-	size_t	i;
 	char	*path_arr;
+	char	**split;
 
-	i = -1;
-	while (envp[++i])
-		if (!(ft_strncmp("PATH", envp[i], 4)))
-			path_arr = envp[i];
-	return (ft_split(path_arr, ':'));
+	path_arr = NULL;
+	while (env)
+	{
+		if (!(ft_strncmp("PATH", env->name, 4)))
+			path_arr = env->value;
+		env = env->next;
+	}
+	if (path_arr != NULL)
+		split = ft_split(path_arr, ':');
+	else
+		split = ft_split("a:b:c", ':');
+	return (split);
 }

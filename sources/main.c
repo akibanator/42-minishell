@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:33:22 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:32:35 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int	main(int argc, char *argv[], char *envp[])
 			break ;
 		}
 		if (check_input(&input, hell))
-			run_line(hell, read_input(mini_split(input, ' '), hell));
+			run_line(hell, read_input(mini_split(input, ' '), hell), envp);
 		hell->lines++;
 		update_exit_code(hell);
+		ft_free_array(hell->path, (void *)hell->path);
+		hell->path = get_path(hell->env);
 	}
 	ft_clear_all(hell);
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 22:46:34 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:30:40 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	run_node(t_hell *hell, t_nelson *node)
+void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 {
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
@@ -24,11 +24,11 @@ void	run_node(t_hell *hell, t_nelson *node)
 		if (ft_is_builtin(node->content[0]))
 			run_builtin(hell, node);
 		else
-			run_cmd(hell, node);
+			run_cmd(hell, node, envp);
 	}
 }
 
-void	run_line(t_hell *hell, t_nelson *node)
+void	run_line(t_hell *hell, t_nelson *node, char *envp[])
 {
 	t_nelson	*aux;
 	int			i;
@@ -39,7 +39,7 @@ void	run_line(t_hell *hell, t_nelson *node)
 	aux = node;
 	while (node)
 	{
-		run_node(hell, node);
+		run_node(hell, node, envp);
 		node = node->next;
 		if (hell->here_code == 1)
 			break ;
@@ -55,4 +55,5 @@ void	run_line(t_hell *hell, t_nelson *node)
 	if (hell->cmd_nbr > 1)
 		close(hell->to_close);
 	hell->cmd_nbr = 0;
+	hell->here_code = 0;
 }
