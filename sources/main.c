@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:51:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 01:46:51 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:12:57 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int argc, char *argv[], char *envp[])
 			ft_printf("\nexit\n");
 			break ;
 		}
-		if (check_input(&input, hell))
-			run_line(hell, read_input(mini_split(input, ' '), hell), envp, -1);
+		if (check_input(input))
+			run_line(hell, read_input(input, hell), envp, -1);
 		hell->lines++;
 		update_exit_code(hell);
 		ft_free_array(hell->path, (void *)hell->path);

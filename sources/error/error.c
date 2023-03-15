@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:11:17 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:46:39 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:38:26 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	cmd_error(char *print, char *error, int flag)
 {
+	if (flag == 108)
+	{
+		write(2, error, ft_strlen(error));
+		exit(1);
+	}
 	write(2, "minishell: ", 11);
 	if (flag == 0)
 	{

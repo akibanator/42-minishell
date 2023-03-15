@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:27:36 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:29:47 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t	get_redir_len(char const *str, char delim)
 	return (i);
 }
 
-static size_t	ft_word_counter(char const *s, char c, size_t words, int aux)
+static size_t	ft_word_counter(char const *s, char c, size_t words)
 {
 	while (*s)
 	{
@@ -48,12 +48,7 @@ static size_t	ft_word_counter(char const *s, char c, size_t words, int aux)
 			if (ft_is_redirect(s) && *(s + 1) && *(s + 1) == *s)
 				s += 3;
 			if (*s == '\'' || *s == '\"')
-			{
-				aux = gen_strlen(s + 1, *s);
-				if (*(s + aux + 1) != *s)
-					ft_printf("please close all quotes");
-				s += aux + 2;
-			}
+				s += gen_strlen(s + 1, *s) + 2;
 			words++;
 			while (*s && *s != c && *s != '|' && *s != '>' && *s != '<')
 				s++;
@@ -95,7 +90,7 @@ char	**mini_split(char *s, char c)
 	size_t	words;
 	char	**split;
 
-	words = ft_word_counter(s, c, 0, 0);
+	words = ft_word_counter(s, c, 0);
 	split = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!split)
 		return (NULL);
