@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 04:17:17 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:10:13 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,7 @@ static char	*read_here_doc(char *limiter, char **here)
 
 static void	free_c(t_hell *hell)
 {
-	//ft_free_nelson(hell->nelson);
-	t_nelson	*aux;
 
-	aux = hell->nelson;
-	while (hell->nelson->next)
-	{
-		hell->nelson = hell->nelson->next;
-		ft_free_array(hell->nelson->content, (void *)hell->nelson->content);
-	}
-	hell->nelson = aux;
-	hell->nelson->next = NULL;
 }
 
 static void	free_d(t_hell *hell)
@@ -82,9 +72,12 @@ int	here_doc(char *limiter, t_hell *hell)
 		return (fd);
 	}
 	else if (temp == 2)
+	{
 		free_c(hell);
+		close(fd);
+		return (-2);
+	}
 	else
 		free_d(hell);
-	write(2, "\n", 1);
 	return (fd);
 }

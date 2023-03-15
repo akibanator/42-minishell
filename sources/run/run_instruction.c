@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:27:14 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:54:07 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	run_cmd(t_hell *hell, t_nelson *node)
 		close(hell->to_close);
 		clear_fd();
 		execve(node->content[0], node->content, 0);
+		ft_free_nelson(node);
+		if (hell->cmd_nbr > 0)
+			free (hell->pids);
+		ft_clear_all(hell);
 		exit(1);
 	}
 }
