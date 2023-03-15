@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 23:44:18 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 01:02:18 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	run_cmd(t_hell *hell, t_nelson *node, char *envp[])
 	sig_setup_exec(hell->pids[i]);
 	if (hell->pids[i] == 0)
 	{
-		close(hell->to_close);
+		if (hell->to_close >= 0)
+			close(hell->to_close);
 		clear_fd();
 		execve(node->content[0], node->content, envp);
 		ft_free_nelson(node);
