@@ -1,20 +1,6 @@
-[fazer um fork e chamar readline
-criar uma function e chamar um handler no processo filho] ??
 
-- corrigir o parse para tratar os espacos
-- here_doc signal
-- pipe no comeco e final
-- linha sem comando valido, msg de erro
+trim "" '' no comando
 
-- Tratar sinais
-WIFSIGNALED, Macro para passar o status code
-WIFEXITED, WIF para checar se foi um exit. Precisa usar outro macro para interpretar, WEXITSTATUS
+exit with arguments
 
-new parse logic
-->split by spaces (ignoring/priority to closed quotes)
-->merge nodes that should be the same
-->split commands and redirects into char **
-
-first:
-
-second:
+filter kubernetes env

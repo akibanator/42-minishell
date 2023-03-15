@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 05:55:46 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/14 02:27:38 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 01:25:33 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_exit(int exit_code)
 {
+	//TODO ARGUMENTS
 	clear_fd();
+	//ft_clear_all(hell);
 	exit(exit_code);
 }

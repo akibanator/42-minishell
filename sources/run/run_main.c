@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 00:12:29 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 02:15:30 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 void	run_line(t_hell *hell, t_nelson *node, char *envp[], int i)
 {
 	t_nelson	*aux;
+	int			status;
 
+	status = 0;
 	if (hell->cmd_nbr > 0)
 		hell->pids = (pid_t *)ft_calloc(sizeof(pid_t), hell->cmd_nbr + 1);
 	aux = node;
@@ -47,7 +49,11 @@ void	run_line(t_hell *hell, t_nelson *node, char *envp[], int i)
 	dup2(hell->std_out, STDOUT_FILENO);
 	if (hell->cmd_nbr > 0)
 		while (++i <= hell->cmd_nbr)
-			waitpid(hell->pids[i], NULL, 0);
+			waitpid(hell->pids[i], &status, 0);
+	if (WIFSIGNALED(status))
+		hell->exit_code = 128 + status;
+	else if (WIFEXITED(status))
+		hell->exit_code = WEXITSTATUS(status);
 	if (hell->cmd_nbr > 0)
 		free (hell->pids);
 	if (hell->cmd_nbr > 1)

@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 01:02:18 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 01:38:06 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,23 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 	size_t	j;
 	char	*cmd;
 
-	if (node->content[0][0] == '.' && node->content[0][0] == '/')
+	if (node->content[0][0] == '.' && node->content[0][1] == '/')
 		return (node->content[0]);
 	j = -1;
 	cmd = ft_strdup(node->content[0]);
 	while (hell->path[++j])
 	{
-		free(node->content[0]);
-		node->content[0] = ft_strjoin(hell->path[j], "/");
-		node->content[0] = ft_strjoin_free(node->content[0], cmd);
 		if (access(node->content[0], 0) == 0)
 		{
 			free(cmd);
-			hell->exit_code = 0;
 			return (node->content[0]);
 		}
+		free(node->content[0]);
+		node->content[0] = ft_strjoin(hell->path[j], "/");
+		node->content[0] = ft_strjoin_free(node->content[0], cmd);
 	}
 	free (node->content[0]);
 	cmd_error("", cmd, 127);
-	hell->exit_code = 127;
 	return (cmd);
 }
 
