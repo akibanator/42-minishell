@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 00:12:54 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:22:17 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_hell		*setup_hell(char *envp[]);
 int			have_var(char *str);
 int			ft_is_redirect(const char *str);
 int			ft_is_builtin(const char	*str);
-void		check_quotes(char *s);
+char		*check_quotes(char *s, t_hell *hell);
 t_env		*check_pwd(t_env *head);
 
 //var_expansion
@@ -86,7 +86,7 @@ void		free_env(t_env *env);
 int			here_doc(char *limiter, t_hell *hell);
 t_nelson	*get_node(char **s, t_hell *hell);
 char		**mini_split(char *s, char c);
-t_nelson	*read_input(char **cmdline, t_hell *hell);
+t_nelson	*read_input(char *cmdline, t_hell *hell);
 
 //builtins
 int			ft_cd(char *str, t_env *head);
@@ -114,6 +114,6 @@ void		sig_int_handle_heredoc(int signal);
 void		sig_quit_handle_heredoc(int signal);
 
 void		check_args(int argc, char *argv[]);
-int			check_input(char **input, t_hell *hell);
+int			check_input(char *input);
 
 #endif

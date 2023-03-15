@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 03:22:36 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 03:28:03 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:25:52 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_quotes(char *s)
+char	*check_quotes(char *s, t_hell *hell)
 {
 	char	quote;
+	char	*str;
 
+	str = s;
 	while (*s)
 	{
 		while (*s && *s != '\'' && *s != '\"')
@@ -24,16 +26,17 @@ void	check_quotes(char *s)
 		{
 			quote = *s;
 			s++;
-			while (*s && *s != quote)
+			while (*s != 0 && *s != quote)
 				s++;
 			if (*s != quote)
 			{
-				ft_printf("please close all quotes");
-				exit(1);
+				ft_clear_all(hell);
+				cmd_error("", "Please, don't use unclosed quotes\n", 108);
 			}
 			s++;
 		}
 	}
+	return (str);
 }
 
 int	ft_is_builtin(const char *str)
@@ -81,24 +84,16 @@ void	check_args(int argc, char *argv[])
 	}
 }
 
-int	check_input(char **input, t_hell *hell)
+int	check_input(char *input)
 {
-	char	*str;
 	size_t	i;
 
 	i = 0;
-	str = *input;
-	while (str[i] && str[i] == ' ')
+	while (input[i] && input[i] == ' ')
 		i++;
-	if (str[i] == '\0')
+	if (input[i] == '\0')
 		return (0);
-	if (**input != ' ')
-		add_history(*input);
-	if (ft_strchr(*input, '$'))
-	{
-		str = expand_variables(*input, hell);
-		free(*input);
-		*input = str;
-	}
+	if (*input != ' ')
+		add_history(input);
 	return (1);
 }
