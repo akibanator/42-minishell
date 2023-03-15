@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 23:30:40 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 00:12:29 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 	}
 }
 
-void	run_line(t_hell *hell, t_nelson *node, char *envp[])
+void	run_line(t_hell *hell, t_nelson *node, char *envp[], int i)
 {
 	t_nelson	*aux;
-	int			i;
 
-	i = -1;
 	if (hell->cmd_nbr > 0)
 		hell->pids = (pid_t *)ft_calloc(sizeof(pid_t), hell->cmd_nbr + 1);
 	aux = node;

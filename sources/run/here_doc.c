@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 00:03:53 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 00:22:54 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	free_d(t_hell *hell, int fd)
 	char	*str;
 	char	*line;
 
-	close(fd);
+	if (fd >= 0)
+		close(fd);
 	str = ft_strdup("warning: here-document at line ");
 	line = ft_itoa(hell->lines);
 	str = ft_strjoin_free(str, line);

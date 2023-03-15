@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/14 23:21:31 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 00:12:54 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		run_redirect(t_nelson *node, t_hell *hell);
 void		run_cmd(t_hell *hell, t_nelson *node, char *envp[]);
 void		run_builtin(t_hell *hell, t_nelson *node);
 void		run_node(t_hell *hell, t_nelson *node, char *envp[]);
-void		run_line(t_hell *hell, t_nelson *node, char *envp[]);
+void		run_line(t_hell *hell, t_nelson *node, char *envp[], int i);
 
 //setup
 void		set_fds(t_hell *hell, t_nelson *node);
