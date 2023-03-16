@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 21:43:48 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:35:29 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void nelson_loop(t_nelson *node)
+static void nelson_loop(t_nelson *node, t_hell *hell)
 {
 	size_t	i;
 	char	*str;
@@ -20,7 +20,7 @@ static void nelson_loop(t_nelson *node)
 	i = -1;
 	while(node->content[++i])
 	{
-		if (node->content[i][0] == '\'' || node->content[i][0] == '\"')
+		if (node->content[i][0] == '\'')
 		{
 			str = (char *)malloc(2 * sizeof(char));
 			str[0] = node->content[i][0];
@@ -28,12 +28,23 @@ static void nelson_loop(t_nelson *node)
 			node->content[i] = ft_strtrim(node->content[i], str);
 			free(str);
 		}
+		else if (node->content[i][0] == '\"')
+		{
+			str = (char *)malloc(2 * sizeof(char));
+			str[0] = node->content[i][0];
+			str[1] = 0;
+			node->content[i] = ft_strtrim(node->content[i], str);
+			node->content[i] = expand_variables(node->content[i], hell);
+			free(str);
+		}
+		else
+			node->content[i] = expand_variables(node->content[i], hell);
 	}
 }
 
 void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 {
-	nelson_loop(node);
+	nelson_loop(node, hell);
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
 	if (ft_is_redirect(node->content[0]))
