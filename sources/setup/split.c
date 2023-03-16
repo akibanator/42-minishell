@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 16:29:47 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/16 00:55:13 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	gen_strlen(char const *str, char delim)
 	size_t	i;
 
 	i = 0;
-	while (str[i] && str[i] != delim)
+	while (str[i] && str[i] != delim && str[i] != '\'' && str[i] != '\"')
 		i++;
 	return (i);
 }
@@ -28,7 +28,7 @@ static size_t	get_redir_len(char const *str, char delim)
 
 	i = 0;
 	while (str[i] && str[i] != delim && str[i] != '|'
-		&& str[i] != '<' && str[i] != '>')
+		&& str[i] != '<' && str[i] != '>' && str[i] != '\'' && str[i] != '\"')
 		i++;
 	return (i);
 }
@@ -47,11 +47,16 @@ static size_t	ft_word_counter(char const *s, char c, size_t words)
 				s += 2;
 			if (ft_is_redirect(s) && *(s + 1) && *(s + 1) == *s)
 				s += 3;
-			if (*s == '\'' || *s == '\"')
-				s += gen_strlen(s + 1, *s) + 2;
 			words++;
 			while (*s && *s != c && *s != '|' && *s != '>' && *s != '<')
-				s++;
+			{
+				if (*s == '\'' || *s == '\"')
+					s += gen_strlen(s + 1, *s) + 2;
+				if (*s == '\'' || *s == '\"')
+					words++;
+				else
+					s++;
+			}
 		}
 	}
 	return (words);
@@ -82,6 +87,9 @@ static char	**split_it(char **split, char const *s, char c, size_t words)
 		i += len;
 	}
 	split[j] = NULL;
+	j = -1;
+	while (split[++j])
+		ft_printf("split[%d] = [%s]\n", j, split[j]);
 	return (split);
 }
 
