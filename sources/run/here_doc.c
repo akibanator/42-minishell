@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 23:16:26 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:01:42 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	free_d(t_hell *hell, int fd)
 	free(line);
 }
 
-static int	nelson_nelson(char **here, int temp, int fd)
+static int	doc_nelson(char **here, int temp, int fd)
 {
 	free(*here);
 	close(temp);
@@ -82,7 +82,7 @@ int	here_doc(char *limiter, t_hell *hell)
 	unlink ("fd_checker");
 	sig_setup_prompt();
 	if (here && !ft_strncmp(limiter, here, ft_strlen(limiter)))
-		return (nelson_nelson(&here, temp, fd));
+		return (doc_nelson(&here, temp, fd));
 	else if (temp == 2)
 		return (free_c(hell));
 	else

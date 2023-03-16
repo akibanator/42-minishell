@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/16 00:20:30 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:01:08 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void nelson_loop(t_nelson *node, t_hell *hell)
+static void run_adjustments(t_nelson *node, t_hell *hell, size_t i)
 {
-	size_t	i;
 	char	*str;
 
-	i = -1;
 	while (node->content[++i])
 	{
 		if (node->content[i][0] == '\'')
@@ -44,7 +42,7 @@ static void nelson_loop(t_nelson *node, t_hell *hell)
 
 void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 {
-	nelson_loop(node, hell);
+	run_adjustments(node, hell, -1);
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
 	if (ft_is_redirect(node->content[0]))
@@ -59,7 +57,7 @@ void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 	}
 }
 
-static void	set_hell_endline(t_hell *hell, int status)
+static void	ft_endline(t_hell *hell, int status)
 {
 	if (WIFSIGNALED(status))
 		hell->exit_code = 128 + status;
@@ -95,5 +93,5 @@ void	run_line(t_hell *hell, t_nelson *node, char *envp[], int i)
 	if (hell->cmd_nbr > 0)
 		while (++i <= hell->cmd_nbr)
 			waitpid(hell->pids[i], &status, 0);
-	set_hell_endline(hell, status);
+	ft_endline(hell, status);
 }

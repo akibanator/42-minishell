@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 22:07:05 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:02:47 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		free_env(t_env *env);
 //read_input
 int			here_doc(char *limiter, t_hell *hell);
 t_nelson	*get_node(char **s, t_hell *hell);
-char		**mini_split(char *s, char c);
+char		**split_nelson(char *s, char c);
 t_nelson	*read_input(char *cmdline, t_hell *hell);
 
 //builtins

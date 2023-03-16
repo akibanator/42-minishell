@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 23:34:31 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:03:07 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_nelson	*read_input(char *cmdline, t_hell *hell)
 	t_nelson	*start;
 
 	i = 0;
-	aux = mini_split(check_quotes(cmdline, hell), ' ');
+	aux = split_nelson(check_quotes(cmdline, hell), ' ');
 	node = get_node(aux, hell);
 	start = node;
 	while (node->content[i])
