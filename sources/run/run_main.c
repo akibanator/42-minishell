@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/16 01:42:24 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:54:02 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_strtrim_free(char *s1, char const *set)
 	return (trim);
 }
 
-static void run_adjustments(t_nelson *node, t_hell *hell, size_t i)
+static void	run_adjustments(t_nelson *node, t_hell *hell, size_t i)
 {
 	char	*str;
 
