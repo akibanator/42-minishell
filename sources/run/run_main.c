@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 23:35:29 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/16 00:20:30 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void nelson_loop(t_nelson *node, t_hell *hell)
 	char	*str;
 
 	i = -1;
-	while(node->content[++i])
+	while (node->content[++i])
 	{
 		if (node->content[i][0] == '\'')
 		{
@@ -59,6 +59,20 @@ void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 	}
 }
 
+static void	set_hell_endline(t_hell *hell, int status)
+{
+	if (WIFSIGNALED(status))
+		hell->exit_code = 128 + status;
+	else if (WIFEXITED(status))
+		hell->exit_code = WEXITSTATUS(status);
+	if (hell->cmd_nbr > 0)
+		free (hell->pids);
+	if (hell->cmd_nbr > 1)
+		close(hell->to_close);
+	hell->cmd_nbr = 0;
+	hell->here_code = 0;
+}
+
 void	run_line(t_hell *hell, t_nelson *node, char *envp[], int i)
 {
 	t_nelson	*aux;
@@ -81,14 +95,5 @@ void	run_line(t_hell *hell, t_nelson *node, char *envp[], int i)
 	if (hell->cmd_nbr > 0)
 		while (++i <= hell->cmd_nbr)
 			waitpid(hell->pids[i], &status, 0);
-	if (WIFSIGNALED(status))
-		hell->exit_code = 128 + status;
-	else if (WIFEXITED(status))
-		hell->exit_code = WEXITSTATUS(status);
-	if (hell->cmd_nbr > 0)
-		free (hell->pids);
-	if (hell->cmd_nbr > 1)
-		close(hell->to_close);
-	hell->cmd_nbr = 0;
-	hell->here_code = 0;
+	set_hell_endline(hell, status);
 }

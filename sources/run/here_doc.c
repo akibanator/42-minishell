@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:50:53 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 00:22:54 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:16:26 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ static char	*read_here_doc(char *limiter, char **here, t_hell *hell)
 	return (doc);
 }
 
-static void	free_c(t_hell *hell)
+static int	free_c(t_hell *hell)
 {
 	hell->here_code = 1;
 	ft_printf("\n");
+	return (-2);
 }
 
 static void	free_d(t_hell *hell, int fd)
@@ -51,6 +52,13 @@ static void	free_d(t_hell *hell, int fd)
 	cmd_error("", str, 1);
 	free(str);
 	free(line);
+}
+
+static int	nelson_nelson(char **here, int temp, int fd)
+{
+	free(*here);
+	close(temp);
+	return (fd);
 }
 
 int	here_doc(char *limiter, t_hell *hell)
@@ -74,16 +82,9 @@ int	here_doc(char *limiter, t_hell *hell)
 	unlink ("fd_checker");
 	sig_setup_prompt();
 	if (here && !ft_strncmp(limiter, here, ft_strlen(limiter)))
-	{
-		free(here);
-		close(temp);
-		return (fd);
-	}
+		return (nelson_nelson(&here, temp, fd));
 	else if (temp == 2)
-	{
-		free_c(hell);
-		return (-2);
-	}
+		return (free_c(hell));
 	else
 		free_d(hell, temp);
 	return (fd);
