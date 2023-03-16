@@ -6,13 +6,13 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 19:13:16 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:43:48 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	run_node(t_hell *hell, t_nelson *node, char *envp[])
+static void nelson_loop(t_nelson *node)
 {
 	size_t	i;
 	char	*str;
@@ -29,6 +29,11 @@ void	run_node(t_hell *hell, t_nelson *node, char *envp[])
 			free(str);
 		}
 	}
+}
+
+void	run_node(t_hell *hell, t_nelson *node, char *envp[])
+{
+	nelson_loop(node);
 	if (node->content[0][0] == '|')
 		run_pipe(hell, node);
 	if (ft_is_redirect(node->content[0]))
