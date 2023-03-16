@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/16 01:11:24 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:28:42 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ static size_t	ft_word_counter(char const *s, char c, size_t words)
 			while (*s && *s != c && *s != '|' && *s != '>' && *s != '<')
 			{
 				if (*s == '\'' || *s == '\"')
-					s += gen_strlen(s + 1, *s) + 1;
-				if (*s == '\'' || *s == '\"')
+					s += gen_strlen(s + 1, *s);
+				if (*(s + 1) == '\'' || *(s + 1) == '\"')
 					words++;
-				else
-					s++;
+				s++;
 			}
 		}
 	}

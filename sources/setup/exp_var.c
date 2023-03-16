@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:12:42 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 23:30:58 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:48:54 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*expand_variables(char *str, t_hell *hell)
 		line[2] = expand_variables(temp, hell);
 		free(temp);
 	}
+	free(str);
 	str = ft_strdup(line[0]);
 	str = ft_strjoin_free(str, get_value(line[1] + 1, hell->env));
 	str = ft_strjoin_free(str, line[2]);
