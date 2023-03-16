@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:25:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 17:10:59 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:02:04 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_nelson	*read_input(char *cmdline, t_hell *hell)
 {
 	char		**aux;
+	int			j;
 	int			i;
 	t_nelson	*node;
 	t_nelson	*start;
@@ -29,9 +30,10 @@ t_nelson	*read_input(char *cmdline, t_hell *hell)
 	{
 		node->next = get_node(&aux[i], hell);
 		node = node->next;
-		i = 0;
-		while (node->content[i])
-			i++;
+		j = 0;
+		while (node->content[j])
+			j++;
+		i += j;
 	}
 	ft_free_array(aux, (void *)aux);
 	return (start);
