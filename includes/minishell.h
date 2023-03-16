@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:52:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/15 17:22:17 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:50:23 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_nelson	*read_input(char *cmdline, t_hell *hell);
 int			ft_cd(char *str, t_env *head);
 void		ft_pwd(t_env *head);
 void		ft_env(t_env *env);
-void		ft_exit(int exit_code);
+void		ft_exit(t_hell *hell, char **args);
 void		ft_echo(char **str);
 void		ft_export(char *str, t_env *env);
 void		export_no_args(t_env *head);

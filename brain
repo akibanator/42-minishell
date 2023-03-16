@@ -1,6 +1,6 @@
 
-trim "" '' no comando
+✓ trim "" '' no comando
 
-exit with arguments
+✓ exit with arguments
 
-filter kubernetes env
+✓ filter kubernetes env

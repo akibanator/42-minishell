@@ -6,7 +6,7 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 23:14:26 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/03 01:13:11 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:41:45 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static int	check_workspace_vars(char *var)
 	if (ft_strstr(var, "WORKSPACE_VNC_PORT"))
 		return (1);
 	if (ft_strstr(var, "WORKSPACE_VNC_SERVICE"))
+		return (1);
+	if (ft_strstr(var, "KUBERNETES"))
 		return (1);
 	return (0);
 }
