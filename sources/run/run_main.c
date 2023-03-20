@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:07:55 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/20 14:56:16 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:09:03 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_strtrim_free(char *s1, char const *set)
 	return (trim);
 }
 
-static void run_adjustments(t_nelson *node, t_hell *hell, size_t i)
+static void	run_adjustments(t_nelson *node, t_hell *hell, size_t i)
 {
 	char	*str;
 
