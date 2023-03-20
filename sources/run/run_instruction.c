@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/20 15:04:01 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:07:19 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	fork_builtin(t_hell*hell, t_nelson *node)
 		ft_clear_all(hell);
 		exit(0);
 	}
+	hell->exit_code = 0;
 }
 
 void	run_builtin(t_hell *hell, t_nelson *node)
