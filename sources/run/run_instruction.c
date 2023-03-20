@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/20 14:57:06 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:04:01 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	fork_builtin(t_hell*hell, t_nelson *node)
 		if (hell->cmd_nbr > 0)
 			free (hell->pids);
 		ft_clear_all(hell);
-		exit(1);
+		exit(0);
 	}
 }
 
