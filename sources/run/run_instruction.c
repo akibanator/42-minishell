@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_instruction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/20 15:07:19 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:19:34 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,18 @@ static char	*get_cmd(t_hell *hell, t_nelson *node)
 	}
 	free (node->content[0]);
 	cmd_error("", cmd, 127);
+	hell->exit_code = 127;
 	return (cmd);
 }
 
 void	run_cmd(t_hell *hell, t_nelson *node, char *envp[])
 {
 	int	i;
+	int	exit_code;
 
 	i = 0;
 	node->content[0] = get_cmd(hell, node);
+	exit_code = hell->exit_code;
 	while (hell->pids[i] != 0)
 		i++;
 	*(hell->pids + i) = fork();
@@ -57,6 +60,8 @@ void	run_cmd(t_hell *hell, t_nelson *node, char *envp[])
 		if (hell->cmd_nbr > 0)
 			free (hell->pids);
 		ft_clear_all(hell);
+		if (exit_code == 127)
+			exit(127);
 		exit(1);
 	}
 }
