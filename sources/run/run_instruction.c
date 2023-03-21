@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:49:26 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/16 01:43:06 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:07:19 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,37 @@ void	run_cmd(t_hell *hell, t_nelson *node, char *envp[])
 	}
 }
 
+static void	fork_builtin(t_hell*hell, t_nelson *node)
+{
+	int	i;
+
+	i = 0;
+	while (hell->pids[i] != 0)
+		i++;
+	*(hell->pids + i) = fork();
+	sig_setup_exec(hell->pids[i]);
+	if (hell->pids[i] == 0)
+	{
+		if (hell->to_close >= 0)
+			close(hell->to_close);
+		clear_fd();
+		if (!ft_strncmp(node->content[0], "echo", 4))
+			ft_echo(node->content);
+		else if (!ft_strncmp(node->content[0], "pwd", 3))
+			ft_pwd(hell->env);
+		else if (!ft_strncmp(node->content[0], "env", 3))
+			ft_env(hell->env);
+		ft_free_nelson(node);
+		if (hell->cmd_nbr > 0)
+			free (hell->pids);
+		ft_clear_all(hell);
+		exit(0);
+	}
+	hell->exit_code = 0;
+}
+
 void	run_builtin(t_hell *hell, t_nelson *node)
 {
-	if (!ft_strncmp(node->content[0], "echo", 4))
-		ft_echo(node->content);
-	else if (!ft_strncmp(node->content[0], "pwd", 3))
-		ft_pwd(hell->env);
-	else if (!ft_strncmp(node->content[0], "env", 3))
-		ft_env(hell->env);
 	if (!ft_strncmp(node->content[0], "cd", 2))
 		ft_cd(node->content[1], hell->env);
 	else if (!ft_strncmp(node->content[0], "export", 6))
@@ -77,4 +100,6 @@ void	run_builtin(t_hell *hell, t_nelson *node)
 		hell->env = ft_unset(node->content[1], hell->env);
 	else if (!ft_strncmp(node->content[0], "exit", 4))
 		ft_exit(hell, node->content, node);
+	else
+		fork_builtin(hell, node);
 }

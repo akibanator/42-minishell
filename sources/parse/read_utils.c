@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:08:37 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/07 22:37:16 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:39:39 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	**get_content(char **s, t_hell *hell)
 	else
 	{
 		content = get_cmd(s);
-		if (!ft_is_builtin(content[0]))
+		if (ft_is_builtin(content[0]) != 1)
 			hell->cmd_nbr++;
 	}
 	return (content);
