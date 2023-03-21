@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:50:43 by akenji-a          #+#    #+#             */
-/*   Updated: 2023/03/16 01:06:03 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/21 00:11:56 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_echo(char **str)
 	int	flag_n;
 	int	i;
 
-	i = -1;
 	flag_n = 0;
 	i = 1;
 	if (str[i] == NULL)
