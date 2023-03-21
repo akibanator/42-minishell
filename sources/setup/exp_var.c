@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:12:42 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/16 01:48:54 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/21 00:37:05 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*expand_variables(char *str, t_hell *hell)
 	{
 		temp = line[2];
 		line[2] = expand_variables(temp, hell);
-		free(temp);
 	}
 	free(str);
 	str = ft_strdup(line[0]);
@@ -54,7 +53,6 @@ int	have_var(char *str)
 			str++;
 			while (*str != '\'')
 				str++;
-			str++;
 		}
 		if (*str == '$')
 			return (TRUE);
