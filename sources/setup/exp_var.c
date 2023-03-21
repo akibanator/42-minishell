@@ -6,11 +6,28 @@
 /*   By: akenji-a <akenji-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:12:42 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/21 00:37:05 by akenji-a         ###   ########.fr       */
+/*   Updated: 2023/03/21 04:58:04 by akenji-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	have_var(char *str)
+{
+	while (*str)
+	{
+		if (*str == '\'')
+		{
+			str++;
+			while (*str != '\'')
+				str++;
+		}
+		if (*str == '$')
+			return (TRUE);
+		str++;
+	}
+	return (FALSE);
+}
 
 char	*get_value(char *key, t_env *head)
 {
@@ -42,23 +59,6 @@ char	*expand_variables(char *str, t_hell *hell)
 	str = ft_strjoin_free(str, line[2]);
 	ft_free_array(line, (void *)line);
 	return (str);
-}
-
-int	have_var(char *str)
-{
-	while (*str)
-	{
-		if (*str == '\'')
-		{
-			str++;
-			while (*str != '\'')
-				str++;
-		}
-		if (*str == '$')
-			return (TRUE);
-		str++;
-	}
-	return (FALSE);
 }
 
 char	**split_var(char *str)

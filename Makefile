@@ -15,8 +15,9 @@ SOURCES_LIST	= builtin/ft_cd.c \
 				memory/free.c \
 				memory/clear_fd.c \
 				parse/check.c \
-				parse/read.c \
 				parse/read_utils.c \
+				parse/read.c \
+				parse/split.c \
 				run/run_instruction.c \
 				run/run_main.c \
 				run/run_redirect.c \
@@ -24,12 +25,10 @@ SOURCES_LIST	= builtin/ft_cd.c \
 				setup/start_env.c \
 				setup/exp_var.c \
 				setup/setup.c \
-				setup/split.c \
 				signal/setup_signal.c \
 				signal/handle_signal.c \
 				util/get.c \
-				main.c \
-				# test.c \
+				main.c
 
 HEADERS			= ${addprefix ${HEADERS_DIR}, ${HEADERS_LIST}}
 SOURCES			= ${addprefix ${SOURCES_DIR}, ${SOURCES_LIST}}
@@ -52,7 +51,7 @@ LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= ${LIBFT_DIR}inc/
 
 CC				= cc
-CFLAGS			= -g3 -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra
 
 RM 				= rm -f
 
