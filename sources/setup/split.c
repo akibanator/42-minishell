@@ -6,7 +6,7 @@
 /*   By: rarobert <rarobert@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:35:04 by rarobert          #+#    #+#             */
-/*   Updated: 2023/03/16 01:28:42 by rarobert         ###   ########.fr       */
+/*   Updated: 2023/03/21 00:16:52 by rarobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	gen_strlen(char const *str, char delim)
 	size_t	i;
 
 	i = 0;
-	while (str[i] && str[i] != delim && str[i] != '\'' && str[i] != '\"')
+	while (str[i] && str[i] != delim)
 		i++;
 	return (i);
 }
@@ -74,7 +74,7 @@ static char	**split_it(char **split, char const *s, char c, size_t words)
 		while (s[i] == c)
 			i++;
 		if (s[i] == '\'' || s[i] == '\"')
-			len = gen_strlen(&s[i + 1], s[i]) + 2;
+			len = gen_strlen(&s[i + 1], s[i]) + 1;
 		else if (ft_is_redirect(&s[i]))
 			len = 1;
 		else
